@@ -100,9 +100,9 @@ root 'home#index'
 ```
 
 # React Routing
-
-### yarn add react-router-dom
-
+``` console
+ $ yarn add react-router-dom
+```
 ## remove default styling
 
 ### views/layouts/application.html.erb
