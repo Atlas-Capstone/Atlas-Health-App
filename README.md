@@ -10,7 +10,7 @@
 
 [Modify App.js](#app.js)
 
-[Check package.json](#package.json should look like this)
+[Check package.json](#package.json-should-look-like-this)
 
 # Cloning Setup
 
