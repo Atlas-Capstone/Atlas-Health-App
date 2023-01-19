@@ -2,6 +2,8 @@
 
 [Create the app](#create-app)
 
+[File Changes](#file-changes)
+
 [Generate Models](#generate-model)
 
 [React Routing](#react-routing)
@@ -18,7 +20,7 @@
 - code it up
 ```
 
-# CREATE APP
+# Create the app
 
 - rails new app-name -d postgresql --css tailwind -T
 - cd app-name
@@ -48,7 +50,7 @@
 - rails generate devise User
 - rails db:migrate
 
-## file changes
+# File changes
 
 ### config/environments/development.rb
 
