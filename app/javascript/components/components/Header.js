@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
-import logo from '/app/assets/images/logo.png'
 import hamburger from '/app/assets/images/hamburger.png'
 
 
 const Header = ({logged_in, current_user, new_user_route, sign_in_route, sign_out_route }) => {
-  console.log(new_user_route);
-  console.log(sign_in_route);
-  console.log(sign_out_route);
-  console.log(logged_in);
-  console.log(current_user);
+
   const [menuVisible, setMenuVisible] = useState(false)
   return (
 
