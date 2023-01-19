@@ -8,7 +8,7 @@
 
 [React Routing](#react-routing)
 
-[Modify App.js](#app.js)
+[Modify App.js](#modify-app.js)
 
 [Check package.json](#package.json-should-look-like-this)
 
