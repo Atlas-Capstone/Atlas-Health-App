@@ -1,8 +1,9 @@
--[Clone the repo](##-Cloning-Setup)
+# Nav menu
+-[Clone the repo](#cloning-setup)
 
--[Generate Models](##Generate-Model)
+-[Generate Models](#generate-model)
 
-## Cloning Setup
+# Cloning Setup
 
 - git clone code
 - cd code
@@ -85,7 +86,7 @@ rails generate controller Home index
 
 ### config/routes.rb
 
-```
+``` ruby
 get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
 root 'home#index'
 ```
@@ -100,7 +101,7 @@ root 'home#index'
 
 remove
 
-```
+``` ruby
 class="container mx-auto mt-28 px-5 flex"
 ```
 
@@ -115,7 +116,7 @@ from
 </html>
 ```
 
-## Generate Model
+# Generate Model
 
 ### create database
 
