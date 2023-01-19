@@ -2,13 +2,13 @@
 
 [Create the app](#create-app)
 
-[File Changes](#file-changes)
+[Ruby File Changes](#ruby-file-changes)
 
 [Generate Models](#generate-model)
 
 [React Routing](#react-routing)
 
-[Modify and check files](#modify-and-check-files)
+[Modify and check files](#modify-and-check-javascript-files)
 
 # Cloning Setup
 
@@ -53,15 +53,15 @@
  $ rails generate devise User
  $ rails db:migrate
 ```
-# File changes
+# Ruby file changes
 
-### config/environments/development.rb
+## config/environments/development.rb
 
 ``` ruby
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
-### config/initializers/devise.rb
+## config/initializers/devise.rb
 
 ``` ruby
 # Find this line:
@@ -70,11 +70,11 @@ config.sign_out_via = :delete
 config.sign_out_via = :get
 ```
 
-### type this in terminal
-
+## type this in terminal
+``` terminal
 rails generate controller Home index
-
-### app/views/home/index.html.erb
+```
+## app/views/home/index.html.erb
 
 ``` ruby
 <%= react_component 'App', {
@@ -84,7 +84,7 @@ rails generate controller Home index
 } %>
 ```
 
-### app/views/layouts/application.html.erb
+## app/views/layouts/application.html.erb
 
 ``` ruby
 // Find this line:
@@ -94,7 +94,7 @@ rails generate controller Home index
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
 
-### config/routes.rb
+## config/routes.rb
 
 ``` ruby
 get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
@@ -128,7 +128,7 @@ from
 
 # Generate Model
 
-### create database
+## create database
 
 ``` ruby
 rails generate resource Exercise name:string description:string category:string difficulty:string
@@ -139,7 +139,7 @@ rails generate migration AddAgeHeightWeightToUsers age:integer height:integer we
 rails db:migrate
 ```
 
-### add validation for user
+## add validation for user
 
 ``` ruby
   validates :age, numericality: { greater_than_or_equal_to: 0 }
@@ -147,7 +147,7 @@ rails db:migrate
   validates :weight, numericality: { greater_than_or_equal_to: 0 }
 ```
 
-### add associations in models
+## add associations in models
 
 ``` ruby
 class User < ApplicationRecord
@@ -175,7 +175,7 @@ class CompletedRoutine < ApplicationRecord
 end
 ```
 
-### seeds.rb
+## seeds.rb
 
 ``` ruby
 # Create users
