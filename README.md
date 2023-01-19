@@ -1,7 +1,9 @@
-# Nav menu
 [Clone the repo](#cloning-setup)
+
 [Create the app](#create-app)
+
 [Generate Models](#generate-model)
+
 [React Routing](#react-routing)
 
 # Cloning Setup
