@@ -4,9 +4,13 @@
 
 [File Changes](#file-changes)
 
+[React Routing](#react-routing)
+
 [Generate Models](#generate-model)
 
-[React Routing](#react-routing)
+[Modify App.js](#app.js)
+
+[Check package.json](#package.json-should-look-like-this)
 
 # Cloning Setup
 
