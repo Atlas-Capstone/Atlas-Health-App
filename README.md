@@ -1,6 +1,6 @@
 -[Clone the repo](##-Cloning-Setup)
 
--[Generate Models](##-Generate-Model)
+-[Generate Models](##Generate-Model)
 
 ## Cloning Setup
 
