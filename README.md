@@ -21,7 +21,6 @@
 ```
 
 # Create the app
-
 ``` console
  $ rails new app-name -d postgresql --css tailwind -T
  $ cd app-name
@@ -29,12 +28,12 @@
 ```
 
 ## Adding RSpec
-```
+``` console
  $ bundle add rspec-rails
  $ rails generate rspec:install
 ```
 ## Adding React
-```
+``` console
  $ bundle add webpacker
  $ bundle add react-rails
  $ rails webpacker:install
@@ -46,7 +45,7 @@
  $ rails generate react:component App
 ```
 ## Adding Devise
-```
+```console
  $ bundle add devise
  $ rails generate devise:install
  $ rails generate devise User
