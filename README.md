@@ -10,7 +10,7 @@
 
 # Cloning Setup
 
-```
+``` console
  $ git clone code
  $ cd code
  $ bundle
@@ -22,17 +22,19 @@
 
 # Create the app
 
+``` console
  $ rails new app-name -d postgresql --css tailwind -T
  $ cd app-name
  $ rails db:create
+```
 
 ## Adding RSpec
-
+```
  $ bundle add rspec-rails
  $ rails generate rspec:install
-
+```
 ## Adding React
-
+```
  $ bundle add webpacker
  $ bundle add react-rails
  $ rails webpacker:install
@@ -42,14 +44,14 @@
  $ yarn add @rails/ujs
  $ rails generate react:install
  $ rails generate react:component App
-
+```
 ## Adding Devise
-
+```
  $ bundle add devise
  $ rails generate devise:install
  $ rails generate devise User
  $ rails db:migrate
-
+```
 # File changes
 
 ### config/environments/development.rb
