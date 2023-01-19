@@ -71,8 +71,8 @@ config.sign_out_via = :get
 ```
 
 ## type this in terminal
-``` terminal
-rails generate controller Home index
+```
+$ rails generate controller Home index
 ```
 ## app/views/home/index.html.erb
 
