@@ -8,7 +8,7 @@
 
 [React Routing](#react-routing)
 
-[Modify and check files](#modify-and-check-javascript-files)
+[Modify and check JS files](#modify-and-check-javascript-files)
 
 # Cloning Setup
 
