@@ -1,8 +1,7 @@
 import React from "react";
-import logo from '/app/assets/images/logo.png'
+import logo from "/app/assets/images/logo.png";
 
-
-const Home = ({sign_in_route}) => {
+const Home = ({ sign_in_route }) => {
   return (
     <div className="h-screen bg-[#051821] flex flex-col items-center">
       <img src={logo} alt="logo" height={300} width={300} />
@@ -12,7 +11,7 @@ const Home = ({sign_in_route}) => {
         </button>
       </a>
     </div>
-  )
+  );
 };
 
 export default Home;
