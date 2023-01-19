@@ -1,10 +1,12 @@
 # Nav menu
--[Clone the repo](#cloning-setup)
-
--[Generate Models](#generate-model)
+[Clone the repo](#cloning-setup)
+[Create the app](#create-app)
+[Generate Models](#generate-model)
+[React Routing](#react-routing)
 
 # Cloning Setup
 
+```
 - git clone code
 - cd code
 - bundle
@@ -12,8 +14,9 @@
 - rails db:setup
 - bin/dev
 - code it up
+```
 
-## CREATE APP
+# CREATE APP
 
 - rails new app-name -d postgresql --css tailwind -T
 - cd app-name
@@ -91,7 +94,7 @@ get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
 root 'home#index'
 ```
 
-## React Routing
+# React Routing
 
 ### yarn add react-router-dom
 
