@@ -54,13 +54,13 @@
 
 ### config/environments/development.rb
 
-```
+``` ruby
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
 ### config/initializers/devise.rb
 
-```
+``` ruby
 # Find this line:
 config.sign_out_via = :delete
 # And replace it with this:
@@ -73,7 +73,7 @@ rails generate controller Home index
 
 ### app/views/home/index.html.erb
 
-```
+``` ruby
 <%= react_component 'App', {
   logged_in: user_signed_in?,
   current_user: current_user,
@@ -83,7 +83,7 @@ rails generate controller Home index
 
 ### app/views/layouts/application.html.erb
 
-```
+``` ruby
 // Find this line:
 <%= javascript_importmap_tags %>
 
@@ -108,13 +108,13 @@ root 'home#index'
 
 remove
 
-``` ruby
+``` html
 class="container mx-auto mt-28 px-5 flex"
 ```
 
 from
 
-```
+``` html
 <body>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
@@ -127,7 +127,7 @@ from
 
 ### create database
 
-```
+``` ruby
 rails generate resource Exercise name:string description:string category:string difficulty:string
 rails generate resource Routine name:string user:references
 rails generate resource ExerciseRoutine exercise:references routine:references sets:integer reps:integer day:string
@@ -138,7 +138,7 @@ rails db:migrate
 
 ### add validation for user
 
-```
+``` ruby
   validates :age, numericality: { greater_than_or_equal_to: 0 }
   validates :height, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0 }
@@ -146,7 +146,7 @@ rails db:migrate
 
 ### add associations in models
 
-```
+``` ruby
 class User < ApplicationRecord
   has_many :routines
 end
@@ -174,7 +174,8 @@ end
 
 ### seeds.rb
 
-```# Create users
+``` ruby
+# Create users
 user1 = User.create(email: "user1@example.com", password: "password", age: 25, height: 180, weight: 75)
 user2 = User.create(email: "user2@example.com", password: "password", age: 30, height: 170, weight: 80)
 
@@ -199,7 +200,7 @@ CompletedRoutine.create(exercise_routine: er2, user: user2, completed_at: Date.t
 
 ## App.js
 
-```
+``` jsx
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
@@ -224,7 +225,7 @@ export default App
 
 ## package.json should look like this
 
-```
+``` json
 {
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
