@@ -1,0 +1,56 @@
+<div class='min-h-screen bg-gradient-to-br from-[#7DAFC7] to-white flex flex-col items-center'>
+<h2 class= 'text-white text-4xl mb-8 mt-10 font-mono italic'>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %><br />
+    <%= f.email_field :email, class: "rounded-full", autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, class: "rounded-full", autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %><br />
+    <%= f.password_field :password_confirmation, class: "rounded-full", autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+  <%= f.label :user_name, class: "block text-sm font-md leading-5 text-[#4F4F4F]"%>
+  <%= f.text_field :user_name, class: "rounded-full", autofocus: true, autocomplete: "user_name" %>
+</div>
+
+<div class="field">
+<%= f.label :age, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+<%= f.number_field :age, class: "rounded-full", autofocus: true, autocomplete: "age" %>
+</div>
+
+<div class="field">
+<%= f.label :height, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+<%= f.number_field :height, class: "rounded-full",autofocus: true, autocomplete: "height" %>
+</div>
+
+<div class="field">
+<%= f.label :weight, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+<%= f.number_field :weight, class: "rounded-full", autofocus: true, autocomplete: "weight" %>
+</div>
+
+<div class="field">
+<%= f.label :gender, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+<%= f.text_field :gender, class: "rounded-full", autofocus: true, autocomplete: "gender" %>
+</div>
+
+  <div class="actions flex justify-center">
+    <%= f.submit "Sign up", class: "bg-[#4F4F4F] w-[150px] text-xl text-center  p-5 m-5 text-white rounded-full bg-opacity-60" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
