@@ -10,6 +10,8 @@
 
 [Modify App.js](#app.js)
 
+[Check package.json](#package.json should look like this)
+
 # Cloning Setup
 
 ``` console
@@ -201,7 +203,7 @@ CompletedRoutine.create(exercise_routine: er1, user: user1, completed_at: Date.t
 CompletedRoutine.create(exercise_routine: er2, user: user2, completed_at: Date.today)
 ```
 
-## App.js
+# Modify App.js
 
 ``` jsx
 import React from "react"
@@ -226,7 +228,7 @@ const App = (props) => {
 export default App
 ```
 
-## package.json should look like this
+# package.json should look like this
 
 ``` json
 {
