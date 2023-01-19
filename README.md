@@ -1,4 +1,6 @@
-# README
+-[Clone the repo](##-Cloning-Setup)
+
+-[Generate Models](##-Generate-Model)
 
 ## Cloning Setup
 
