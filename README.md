@@ -203,7 +203,7 @@ CompletedRoutine.create(exercise_routine: er1, user: user1, completed_at: Date.t
 CompletedRoutine.create(exercise_routine: er2, user: user2, completed_at: Date.today)
 ```
 
-# Modify and check javascript files
+# Modify and check Javascript files
 
 ## Modify App.js
 
