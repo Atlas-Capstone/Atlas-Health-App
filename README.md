@@ -275,3 +275,18 @@ export default App
   }
 }
 ```
+
+# Jest testing with imported images or media
+
+If you run into problems with jest testing with imported images or media files this is the fix that we came up with. In your package.json make these changes to the file path for the moduleNameMapper within jest.
+
+``` javascript
+ "moduleNameMapper": {
+      "\\.(jpg|png|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/mocks/fileMock.js"
+    },
+```
+Also in the root directory create a folder called mocks. In that folder create a file called fileMock.js. In that file put in this code.
+``` javascript
+export default "";
+```
