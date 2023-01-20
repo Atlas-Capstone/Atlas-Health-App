@@ -10,6 +10,8 @@
 
 [Modify and check JS files](#modify-and-check-javascript-files)
 
+[Jest testing with impoted images or media](#jest-testing-with-imported-images-or-media)
+
 # Cloning Setup
 
 ``` console
