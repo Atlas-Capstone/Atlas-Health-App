@@ -2,11 +2,15 @@
 
 [Create the app](#create-app)
 
-[File Changes](#file-changes)
+[Ruby File Changes](#ruby-file-changes)
 
 [Generate Models](#generate-model)
 
 [React Routing](#react-routing)
+
+[Modify and check JS files](#modify-and-check-javascript-files)
+
+[Jest testing with impoted images or media](#jest-testing-with-imported-images-or-media)
 
 # Cloning Setup
 
@@ -51,15 +55,15 @@
  $ rails generate devise User
  $ rails db:migrate
 ```
-# File changes
+# Ruby file changes
 
-### config/environments/development.rb
+## config/environments/development.rb
 
 ``` ruby
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
-### config/initializers/devise.rb
+## config/initializers/devise.rb
 
 ``` ruby
 # Find this line:
@@ -68,11 +72,11 @@ config.sign_out_via = :delete
 config.sign_out_via = :get
 ```
 
-### type this in terminal
-
-rails generate controller Home index
-
-### app/views/home/index.html.erb
+## type this in terminal
+``` console
+ $ rails generate controller Home index
+```
+## app/views/home/index.html.erb
 
 ``` ruby
 <%= react_component 'App', {
@@ -82,7 +86,7 @@ rails generate controller Home index
 } %>
 ```
 
-### app/views/layouts/application.html.erb
+## app/views/layouts/application.html.erb
 
 ``` ruby
 // Find this line:
@@ -92,7 +96,7 @@ rails generate controller Home index
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
 
-### config/routes.rb
+## config/routes.rb
 
 ``` ruby
 get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
@@ -126,7 +130,7 @@ from
 
 # Generate Model
 
-### create database
+## create database
 
 ``` ruby
 rails generate resource Exercise name:string description:string category:string difficulty:string
@@ -137,7 +141,7 @@ rails generate migration AddAgeHeightWeightToUsers age:integer height:integer we
 rails db:migrate
 ```
 
-### add validation for user
+## add validation for user
 
 ``` ruby
   validates :age, numericality: { greater_than_or_equal_to: 0 }
@@ -145,7 +149,7 @@ rails db:migrate
   validates :weight, numericality: { greater_than_or_equal_to: 0 }
 ```
 
-### add associations in models
+## add associations in models
 
 ``` ruby
 class User < ApplicationRecord
@@ -173,7 +177,7 @@ class CompletedRoutine < ApplicationRecord
 end
 ```
 
-### seeds.rb
+## seeds.rb
 
 ``` ruby
 # Create users
@@ -199,7 +203,9 @@ CompletedRoutine.create(exercise_routine: er1, user: user1, completed_at: Date.t
 CompletedRoutine.create(exercise_routine: er2, user: user2, completed_at: Date.today)
 ```
 
-## App.js
+# Modify and check Javascript files
+
+## Modify App.js
 
 ``` jsx
 import React from "react"
@@ -270,4 +276,19 @@ export default App
     ]
   }
 }
+```
+
+# Jest testing with imported images or media
+
+If you run into problems with jest testing with imported images or media files this is the fix that we came up with. In your package.json make these changes to the file path for the moduleNameMapper within jest.
+
+``` javascript
+ "moduleNameMapper": {
+      "\\.(jpg|png|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/mocks/fileMock.js"
+    },
+```
+Also in the root directory create a folder called mocks. In that folder create a file called fileMock.js. In that file put in this code.
+``` javascript
+export default "";
 ```
