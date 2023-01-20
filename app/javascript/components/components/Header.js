@@ -11,7 +11,7 @@ const Header = ({
 }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-[#051821] px-6">
+    <nav className= "flex items-center justify-between flex-wrap bg-transparent px-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
       <div className="block lg:hidden">
         <button
