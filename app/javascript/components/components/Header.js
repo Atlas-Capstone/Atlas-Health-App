@@ -11,7 +11,7 @@ const Header = ({
 }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   return (
-    <nav className= "flex items-center justify-between flex-wrap bg-transparent px-6">
+    <nav className= "flex items-center justify-between flex-wrap bg-black px-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
       <div className="block lg:hidden">
         <button
@@ -43,6 +43,12 @@ const Header = ({
               >
                 My Schedules
               </NavLink>
+              <NavLink
+            to="/newschedule"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            New Schedule
+          </NavLink>
             </>
           )}
 
@@ -68,6 +74,7 @@ const Header = ({
           >
             All Schedules
           </NavLink>
+
         </div>
       </div>
     </nav>
