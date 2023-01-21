@@ -1,7 +1,7 @@
 class ExerciseRoutinesController < ApplicationController
 
     def index
-        exercise_routines = Exercise_Routine.all
+        exercise_routines = ExerciseRoutine.all
         render json: exercise_routines
     end
     

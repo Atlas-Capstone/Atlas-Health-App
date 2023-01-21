@@ -1,7 +1,57 @@
 require 'rails_helper'
 
+#description
+#category
+#difficulty
+#image
+
 RSpec.describe "Exercises", type: :request do
+
+  current_user = User.first_or_create!(
+    email: 'dean@example.com', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    user_name: "dean", 
+    age: 27, 
+    height: 71, 
+    weight: 295, 
+    gender: 'male'
+  )
+
+  # change
+  let(:valid_exercise) do {
+   "description" => "",
+   "category" => "",
+   "difficulty" => "",
+   "image" => ""
+  }
+  end
+
+  # change
+  let(:invalid_exercise) do {
+    
+    "name" => "",
+    "days_per_week" => ""
+  }
+  end
+
   describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+
+    it "gets a list of schedules " do
+
+      exercises = Exercise.new(valid_exercise)
+
+      exercises.user = current_user
+
+      exercises.save
+
+      get '/exercises'
+
+      exercises = JSON.parse(response.body)
+
+      expect(response).to have_http_status(200)
+
+      expect(exercises.length).to eq 1
+    end
   end
 end
