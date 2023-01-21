@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
+import NewSchedule from './pages/NewSchedule'
 
 const App = (props) => {
   const [schedules, setSchedules] = useState();
@@ -19,6 +20,20 @@ const App = (props) => {
       })
       .catch((error) => console.log(error));
   };
+
+  const createSchedule = (schedule) => {
+    fetch("http://localhost:3000/schedules", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ schedule }),
+    })
+      .then((response) => response.json())
+      .then(() => readSchedule())
+      .catch((error) => console.error(error));
+  };
+
   return (
     <BrowserRouter>
       <Header {...props} />
@@ -34,6 +49,12 @@ const App = (props) => {
           path="/myschedulesindex"
           element={<MyScheduleIndex {...props} schedules={schedules} />}
         />
+        <Route
+          exact
+          path="/newschedule"
+          element={<NewSchedule {...props} createSchedule={createSchedule} />}
+          />
+
       </Routes>
     </BrowserRouter>
   );
