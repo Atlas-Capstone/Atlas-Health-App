@@ -15,7 +15,9 @@ const MyScheduleIndex = ({ schedules, logged_in, current_user }) => {
 
       {schedules?.filter(item => item.user_id === current_user?.id).map((schedule) => (
 
-        <div key={schedule.id}      className="text-white items-center justify-center bg-gray-500 bg-opacity-50 rounded-2xl grid grid-cols-2">
+        <div 
+          key={schedule.id}      
+          className="text-white items-center justify-center bg-gray-500 bg-opacity-50 rounded-2xl grid grid-cols-2">
 
           <div className="col-start-1 col-end-2">
             <img src={potato}/>
@@ -27,7 +29,7 @@ const MyScheduleIndex = ({ schedules, logged_in, current_user }) => {
 
             <p>Days Per Week: {schedule.days_per_week}</p>
 
-            <NavLink to="/exerciseroutines">
+            <NavLink to={`/exerciseroutines/${schedule.id}`}>
               See details
             </NavLink>
           </div>
