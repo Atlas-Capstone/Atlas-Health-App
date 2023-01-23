@@ -1,10 +1,26 @@
 
 require 'rails_helper'
 
-# weight
-# sets
-# reps
-# day
+# Schema attributes for exercise_routines
+  # weight
+  # sets
+  # reps
+  # day
+
+# belongs_to :
+  # exercise
+  # schedule
+  
+# has_many :completed_routines
+
+# validates 
+  # weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  # sets, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  # reps, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  # day, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
 RSpec.describe "exercise_routines", type: :request do
 
@@ -47,7 +63,8 @@ RSpec.describe "exercise_routines", type: :request do
 
       exercise_routines.save
 
-      get exercise_routines_url
+      # get exercise_routines_url or
+      get '/exercise_routines'
 
       exercise_routines = JSON.parse(response.body)
 

@@ -57,9 +57,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_232904) do
   end
 
   create_table "schedules", force: :cascade do |t|
+    
+    # Begin test coverage
     t.string "name"
     t.integer "days_per_week"
     t.bigint "user_id", null: false
+    # End test coverage
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_schedules_on_user_id"

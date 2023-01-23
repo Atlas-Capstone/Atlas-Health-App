@@ -4,4 +4,5 @@ class SchedulesController < ApplicationController
         schedule = Schedule.all
         render json: schedule
     end
+    
 end

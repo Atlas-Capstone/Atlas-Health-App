@@ -1,9 +1,30 @@
 require 'rails_helper'
 
-#description
-#category
-#difficulty
-#image
+
+# Begin schema attributes:
+
+  # description
+  # category
+  # difficulty
+  # image
+
+# End schema attributes
+
+
+# Begin model attributes:
+
+  # has_many :exercise_routines
+
+  # validations:
+    # name, presence: true
+    # description, presence: true
+    # category, presence: true
+    # difficulty, presence: true
+    # image, presence: true
+
+# End model attributes
+
+# Have a current user, valid & invalid exercise in describe block but outside any it blocks.
 
 RSpec.describe "Exercises", type: :request do
 
@@ -18,30 +39,30 @@ RSpec.describe "Exercises", type: :request do
     gender: 'male'
   )
 
-  # change
   let(:valid_exercise) do {
-   "description" => "",
-   "category" => "",
-   "difficulty" => "",
-   "image" => ""
-  }
-  end
-
-  # change
-  let(:invalid_exercise) do {
     
-    "name" => "",
-    "days_per_week" => ""
-  }
-  end
+    "name" => "the push pull",
+    "description" => "a",
+    "category" => "b",
+    "difficulty" => "c",
+    "image" => "d"
+
+  } end
+
+  let(:invalid_exercise) do {
+
+    "description" => nil,
+    "category" => "",
+    "difficulty" => "",
+    "image" => ""
+
+  } end
 
   describe "GET /index" do
 
-    it "gets a list of schedules " do
+    it "gets a list of exercises " do
 
       exercises = Exercise.new(valid_exercise)
-
-      exercises.user = current_user
 
       exercises.save
 
@@ -52,6 +73,6 @@ RSpec.describe "Exercises", type: :request do
       expect(response).to have_http_status(200)
 
       expect(exercises.length).to eq 1
-    end
-  end
-end
+    end # End it
+  end # End describe GET/index
+end # End describe Exercises
