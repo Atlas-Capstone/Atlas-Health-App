@@ -22,6 +22,15 @@ class SchedulesController < ApplicationController
         end
     end
 
+    def destroy
+        schedule = Schedule.find(params[:id])
+        if schedule.destroy
+        render json: schedule
+        else
+        render json: schedule.errors, status: unproccessable_entity
+        end
+    end
+
 
     private
     def schedule_params

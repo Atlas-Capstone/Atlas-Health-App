@@ -90,6 +90,17 @@ describe "PATCH /update" do
         expect(response).to have_http_status(422)
       end
     end
+
+  end
+  describe "DESTROY /delete" do
+    it "deletes a schedule" do
+      schedule = Schedule.new(valid_schedule)
+        schedule.save
+        schedule.reload
+      expect do 
+        delete schedule_url(schedule)
+      end.to change(Schedule, :count).by(-1)
+    end
   end
 end
 

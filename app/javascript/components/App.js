@@ -70,7 +70,7 @@ const App = (props) => {
 
 
   const createSchedule = (schedule) => {
-    fetch("http://localhost:3000/schedules", {
+    fetch("/schedules", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,8 +98,20 @@ commented out because this will be used later when show is working on backend. U
       .then((response) => response.json())
       .then(() => readSchedule())
       .catch((error) => console.error(error));
+
   };
 
+  const deleteSchedule = (id) => {
+    fetch(`http://localhost:3000/schedules/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then(() => readSchedule())
+      .catch((errors) => console.log("delete errors:", errors))
+  }
 
   return (
 
@@ -118,14 +130,14 @@ commented out because this will be used later when show is working on backend. U
         />
 
         <Route exact path="/myschedulesindex"
-          element={<MyScheduleIndex {...props} schedules={schedules} />}
+          element={<MyScheduleIndex {...props} deleteSchedule={deleteSchedule} schedules={schedules} />}
         />
 
 
         <Route exact path="/exerciseroutines/:id"
           element={<ExerciseRoutines {...props} exercises={exercises}
           exerciseRoutines = {exerciseRoutines} />}
-
+        />
         <Route
           exact
           path="/newschedule"
