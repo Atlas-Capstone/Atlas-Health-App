@@ -12,6 +12,16 @@ class SchedulesController < ApplicationController
         render json: schedule.errors, status: 422
         end
     end
+    def update
+        schedule = Schedule.find(params[:id])
+        schedule.update(schedule_params)
+        if schedule.valid?
+        render json: schedule
+        else
+        render json: schedule.errors, status: 422
+        end
+    end
+
 
     private
     def schedule_params
