@@ -53,7 +53,7 @@ const App = (props) => {
   };
 
   const createSchedule = (schedule) => {
-    fetch("http://localhost:3000/schedules", {
+    fetch("/schedules", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const App = (props) => {
 
   const updateSchedule = (schedule, id) => {
     console.log(schedule, id)
-    fetch(`http://localhost:3000/schedules/${id}`, {
+    fetch(`/schedules/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,9 @@ const App = (props) => {
       .then((response) => response.json())
       .then(() => readSchedule())
       .catch((error) => console.error(error));
+
   };
+
 
   const createExerciseRoutine = (exRoutine) => {
 
@@ -99,6 +101,19 @@ const App = (props) => {
       .catch((error) => console.error(error));
   };
 
+  const deleteSchedule = (id) => {
+    fetch(`/schedules/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then(() => readSchedule())
+      .catch((errors) => console.log("delete errors:", errors))
+  }
+
+
   return (
 
     <BrowserRouter>
@@ -116,7 +131,7 @@ const App = (props) => {
         />
 
         <Route exact path="/myschedulesindex"
-          element={<MyScheduleIndex {...props} schedules={schedules} />}
+          element={<MyScheduleIndex {...props} deleteSchedule={deleteSchedule} schedules={schedules} />}
         />
 
         <Route exact path="/exerciseroutines/:id"
@@ -125,7 +140,9 @@ const App = (props) => {
           exerciseRoutines = {exerciseRoutines} />}
         />
 
-        <Route exact path="/newschedule"
+        <Route
+          exact
+          path="/newschedule"
           element={<NewSchedule {...props} createSchedule={createSchedule} />}
           />
 

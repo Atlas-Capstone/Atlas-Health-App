@@ -34,9 +34,12 @@ const ScheduleIndex = ({ schedules, logged_in, current_user }) => {
             </NavLink>
 
 
+
             <NavLink to={'/scheduleedit'}>
     <button name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Edit</button>
     </NavLink>
+
+
 
           </div>
         </div>
