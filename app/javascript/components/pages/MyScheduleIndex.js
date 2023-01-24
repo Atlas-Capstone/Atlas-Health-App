@@ -1,17 +1,16 @@
 
 import React from "react";
-import { NavLink } from "react-router-dom";
-import potato from "/app/assets/images/potato.jpg";
 
-// End imports
+import potato from "/app/assets/images/potato.jpg"
+import { NavLink } from "react-router-dom";
+
 
 const MyScheduleIndex = ({ schedules, logged_in, current_user }) => {
 
   return (
     <div className="-mt-[100px] bg-gradient-to-br from-cyan-500 to-white  pr-2 min-h-screen gap-2 flex flex-col items-center">
 
-      <h1 className="text-white pt-[100px] text-2xl">Routines</h1>
-
+      <h1 className="text-white pt-[100px] text-2xl">Schedules</h1>
 
       {schedules?.filter(item => item.user_id === current_user?.id).map((schedule) => (
 
@@ -29,9 +28,15 @@ const MyScheduleIndex = ({ schedules, logged_in, current_user }) => {
 
             <p>Days Per Week: {schedule.days_per_week}</p>
 
+
             <NavLink to={`/exerciseroutines/${schedule.id}`}>
               See details
             </NavLink>
+
+            <NavLink to={`/scheduleedit/${schedule.id}`}>
+    <button name="submit" class="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Edit</button>
+    </NavLink>
+
           </div>
         </div>
       ))}

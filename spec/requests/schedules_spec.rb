@@ -26,13 +26,15 @@ RSpec.describe "Schedules", type: :request do
 
   let(:valid_schedule) do {
     "name" => "big muscles",
-    "days_per_week" => 6
+    "days_per_week" => 6,
+    "user_id" => 1
   }
   end
 
   let(:invalid_schedule) do {
     "name" => "",
-    "days_per_week" => ""
+    "days_per_week" => "",
+    "user_id" => ""
   }
   end
 
@@ -40,24 +42,54 @@ RSpec.describe "Schedules", type: :request do
 
     it "gets a list of schedules " do
 
-      # Create a schedule entry
-      schedules = Schedule.new(valid_schedule)
-
-      # Assign it a user
-      schedules.user = current_user
-
-      # "Save" it in mock DB ENV
-      schedules.save
-
-      # Send get request to mock url
-      get '/schedules'
-
-      # Parse json response from index method in schedule controller
-      schedules = JSON.parse(response.body)
-
+    schedules = Schedule.new(valid_schedule)
+    schedules.user = current_user
+    schedules.save
+    get '/schedules'
+    schedules = JSON.parse(response.body)
+    expect(response).to have_http_status(200)
+    expect(schedules.length).to eq 1
+  end
+end 
+  describe "POST /create" do
+    it "creates a schedule" do
+      post schedules_url, params: {schedule: valid_schedule}
       expect(response).to have_http_status(200)
-
-      expect(schedules.length).to eq 1
-    end # End it block
-  end # End describe block
+      schedule = Schedule.first
+      expect(schedule.name).to eq "big muscles"
+  end
+  it "gives a 422 error" do
+    post schedules_url, params: {schedule: invalid_schedule}
+    expect(response).to have_http_status(422)
+  end
 end
+describe "PATCH /update" do
+  context "with valid parameters" do 
+    let (:new_attributes) do 
+      {"name" => "small muscles",
+      "days_per_week" => 6,
+      "user_id" => 1
+    }
+    end
+    it "updates a schedule" do
+      schedule = Schedule.new(valid_schedule)
+      schedule.save
+      patch schedule_url(schedule), params: {schedule: new_attributes}
+      schedule.reload 
+      expect(response).to have_http_status(200)
+      expect(schedule.name).to eq "small muscles"
+      
+      end
+    end
+    context "with invalid parameters" do 
+      it "expecting a 422 error" do
+        schedule = Schedule.new(valid_schedule)
+        schedule.save
+        patch schedule_url(schedule), params: {schedule: invalid_schedule}
+        schedule.reload 
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
+end
+
