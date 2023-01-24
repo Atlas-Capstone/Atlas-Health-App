@@ -11,6 +11,6 @@ class ExerciseRoutine < ApplicationRecord
 
   validates :reps, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
-  validates :day, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :day, presence: true
 
 end
