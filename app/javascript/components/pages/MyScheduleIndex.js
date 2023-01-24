@@ -1,9 +1,7 @@
 
 import React from "react";
-
 import potato from "/app/assets/images/potato.jpg"
 import { NavLink } from "react-router-dom";
-
 
 const MyScheduleIndex = ({ schedules, logged_in, current_user }) => {
 

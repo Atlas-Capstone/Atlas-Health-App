@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import ExerciseRoutines from "./components/ExerciseRoutines";
+import ExerciseRoutines from "./pages/ExerciseRoutines";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
 import Home from "./pages/Home";
 import NewSchedule from './pages/NewSchedule'
 import ScheduleEdit from "./pages/ScheduleEdit";
+import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 
 
 const App = (props) => {
@@ -78,17 +79,23 @@ const App = (props) => {
       .catch((error) => console.error(error));
   };
 
-  const createExerciseRoutine = (schedule, id) => {
-    console.log(schedule, id)
-    fetch(`http://localhost:3000/schedules/${id}`, {
-      method: "PUT",
+  const createExerciseRoutine = (exRoutine) => {
+
+    fetch('http://localhost:3000/exercise_routines', {
+
+      method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ schedule }),
+
+      body: JSON.stringify( exRoutine )
     })
+
       .then((response) => response.json())
-      .then(() => readSchedule())
+
+      .then(() => readExerciseRoutines())
+
       .catch((error) => console.error(error));
   };
 
@@ -112,9 +119,9 @@ const App = (props) => {
           element={<MyScheduleIndex {...props} schedules={schedules} />}
         />
 
-
         <Route exact path="/exerciseroutines/:id"
-          element={<ExerciseRoutines {...props} exercises={exercises}
+          element={<ExerciseRoutines {...props} 
+          exercises={exercises}
           exerciseRoutines = {exerciseRoutines} />}
         />
 
@@ -132,12 +139,12 @@ const App = (props) => {
         />
 
         <Route
-          exact path="/exerciseroutine/:id"
-          element={ <ScheduleEdit {...props} 
-            updateSchedule={updateSchedule} 
+          exact path="/newexerciseroutine/:id"
+          element={ <NewExerciseRoutine {...props} 
+            createExerciseRoutine={createExerciseRoutine} 
             schedules={schedules}
-            />
-          }
+            exercises={exercises}
+            />}
         />
 
       </Routes>

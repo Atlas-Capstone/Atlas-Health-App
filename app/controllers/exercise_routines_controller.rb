@@ -19,6 +19,6 @@ class ExerciseRoutinesController < ApplicationController
     private
 
     def exercise_routine_params
-        params.require(:exercise_routines).permit(:exercise_id, :schedule_id, :weight, :sets, :reps, :day)
+        params.require(:exercise_routine).permit(:exercise_id, :schedule_id, :weight, :sets, :reps, :day)
     end
 end
