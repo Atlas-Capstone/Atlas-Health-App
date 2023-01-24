@@ -1,28 +1,14 @@
-
 require 'rails_helper'
 
-# Schema attributes for exercise_routines
-  # weight
-  # sets
-  # reps
-  # day
-
-# belongs_to :
-  # exercise
-  # schedule
-  
-# has_many :completed_routines
-
-# validates 
-  # weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  # sets, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  # reps, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  # day, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
 RSpec.describe "exercise_routines", type: :request do
+
+  current_exercise = Exercise.first_or_create!(
+    "name" => "the push pull",
+    "description" => "a",
+    "category" => "b",
+    "difficulty" => "c",
+    "image" => "d"
+  )
 
   current_user = User.first_or_create!(
     email: 'dean@example.com', 
@@ -35,9 +21,15 @@ RSpec.describe "exercise_routines", type: :request do
     gender: 'male'
   )
 
+  current_schedule = Schedule.first_or_create!(
+    "name" => "interesting schedule",
+    "days_per_week" => 3,
+    "user_id" => 1
+  )
+
   let(:valid_exercise_routine) do {
-    "exercise_id" => 1,
-    "schedule_id" => 1,
+    "exercise_id" => 4,
+    "schedule_id" => 9,
     "weight" => 1,
     "sets" => 1,
     "reps" => 1,
@@ -55,6 +47,7 @@ RSpec.describe "exercise_routines", type: :request do
     } 
   end
 
+
   describe "GET /index" do
 
     it "gets a list of exercise_routines " do
@@ -71,5 +64,32 @@ RSpec.describe "exercise_routines", type: :request do
       expect(response).to have_http_status(200)
     end
   end
-end
 
+
+  describe "POST /create" do
+
+    it "creates a exercise_routines" do
+
+      post exercise_routines_url, params: {exercise_routines: valid_exercise_routine}
+
+      puts current_exercise.id
+      puts current_schedule.id
+      puts JSON.parse(response.body)
+
+      expect(response).to have_http_status(200)
+
+      exercise_routines = ExerciseRoutine.first
+
+      expect(exercise_routines.day).to eq "Monday"
+
+    end
+
+    it "gives a 422 error" do
+
+      post exercise_routines_url, params: {exercise_routines: invalid_exercise_routine}
+
+      expect(response).to have_http_status(422)
+
+    end
+  end
+end

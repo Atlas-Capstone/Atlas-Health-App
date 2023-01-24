@@ -35,10 +35,10 @@ import { NavLink, useNavigate, useParams } from "react-router-dom"
             </label>
         
             <NavLink to={'/myschedulesindex'}>
-            <button onClick={handleSubmit} name="submit" class="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Create</button>
+            <button onClick={handleSubmit} name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Create</button>
             </NavLink>
             <NavLink to={'/myschedulesindex'}>
-            <button name="submit" class="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Cancel</button>
+            <button name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Cancel</button>
             </NavLink>
           </form>
         )

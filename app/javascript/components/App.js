@@ -1,27 +1,16 @@
-
-// Begin react imports
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// End react imports
-
-
-// Begin components imports
 import Header from "./components/Header";
-import ExerciseRoutines from "./components/ExerciseRoutines";
-// End components
-
-
-// Begin pages imports
+import ExerciseRoutines from "./pages/ExerciseRoutines";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
 import Home from "./pages/Home";
 import NewSchedule from './pages/NewSchedule'
 import ScheduleEdit from "./pages/ScheduleEdit";
+import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 
 
 const App = (props) => {
-
-  // Begin state functions
 
   const [schedules, setSchedules] = useState();
 
@@ -35,9 +24,6 @@ const App = (props) => {
     readExerciseRoutines();
   }, []);
 
-  // End state functions
-  // Begin fetch functions
-
   const readSchedule = () => {
     fetch("/schedules")
       .then((response) => response.json())
@@ -46,7 +32,6 @@ const App = (props) => {
       })
       .catch((error) => console.log(error));
   };
-
 
   const readExercise = () => {
     fetch("/exercises")
@@ -63,11 +48,9 @@ const App = (props) => {
       .then((response) => response.json())
       .then((payload) => {
         setExerciseRoutines(payload);
-        console.log(payload);
       })
       .catch((error) => console.log(error));
   };
-
 
   const createSchedule = (schedule) => {
     fetch("/schedules", {
@@ -81,10 +64,6 @@ const App = (props) => {
       .then(() => readSchedule())
       .catch((error) => console.error(error));
   };
-
-/*
-commented out because this will be used later when show is working on backend. Until then, this code would break a lot of what we are working on
-*/
 
   const updateSchedule = (schedule, id) => {
     console.log(schedule, id)
@@ -101,6 +80,27 @@ commented out because this will be used later when show is working on backend. U
 
   };
 
+
+  const createExerciseRoutine = (exRoutine) => {
+
+    fetch('http://localhost:3000/exercise_routines', {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify( exRoutine )
+    })
+
+      .then((response) => response.json())
+
+      .then(() => readExerciseRoutines())
+
+      .catch((error) => console.error(error));
+  };
+
   const deleteSchedule = (id) => {
     fetch(`/schedules/${id}`, {
       headers: {
@@ -112,6 +112,7 @@ commented out because this will be used later when show is working on backend. U
       .then(() => readSchedule())
       .catch((errors) => console.log("delete errors:", errors))
   }
+
 
   return (
 
@@ -133,16 +134,18 @@ commented out because this will be used later when show is working on backend. U
           element={<MyScheduleIndex {...props} deleteSchedule={deleteSchedule} schedules={schedules} />}
         />
 
-
         <Route exact path="/exerciseroutines/:id"
-          element={<ExerciseRoutines {...props} exercises={exercises}
+          element={<ExerciseRoutines {...props} 
+          exercises={exercises}
           exerciseRoutines = {exerciseRoutines} />}
         />
+
         <Route
           exact
           path="/newschedule"
           element={<NewSchedule {...props} createSchedule={createSchedule} />}
           />
+
         <Route
           exact
           path="/scheduleedit/:id"
@@ -150,6 +153,15 @@ commented out because this will be used later when show is working on backend. U
             <ScheduleEdit {...props} updateSchedule={updateSchedule} schedules={schedules}
             />
           }
+        />
+
+        <Route
+          exact path="/newexerciseroutine/:id"
+          element={ <NewExerciseRoutine {...props} 
+            createExerciseRoutine={createExerciseRoutine} 
+            schedules={schedules}
+            exercises={exercises}
+            />}
         />
 
       </Routes>

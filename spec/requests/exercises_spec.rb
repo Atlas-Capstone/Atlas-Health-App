@@ -1,31 +1,6 @@
 require 'rails_helper'
 
 
-# Begin schema attributes:
-
-  # description
-  # category
-  # difficulty
-  # image
-
-# End schema attributes
-
-
-# Begin model attributes:
-
-  # has_many :exercise_routines
-
-  # validations:
-    # name, presence: true
-    # description, presence: true
-    # category, presence: true
-    # difficulty, presence: true
-    # image, presence: true
-
-# End model attributes
-
-# Have a current user, valid & invalid exercise in describe block but outside any it blocks.
-
 RSpec.describe "Exercises", type: :request do
 
   current_user = User.first_or_create!(

@@ -1,11 +1,12 @@
 
 import React from "react";
-
 import potato from "/app/assets/images/potato.jpg"
 import { NavLink } from "react-router-dom";
 
 
+
 const MyScheduleIndex = ({ schedules, logged_in, current_user, deleteSchedule }) => {
+
 
   return (
     <div className="-mt-[100px] bg-gradient-to-br from-cyan-500 to-white  pr-2 min-h-screen gap-2 flex flex-col items-center">
@@ -40,6 +41,7 @@ const MyScheduleIndex = ({ schedules, logged_in, current_user, deleteSchedule })
             <NavLink to="/myschedulesindex">
               <button onClick={() => deleteSchedule(`${schedule.id}`)} name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Delete</button>
             </NavLink>
+
 
           </div>
         </div>
