@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
 import NewSchedule from './pages/NewSchedule'
+import ScheduleEdit from "./pages/ScheduleEdit";
 
 const App = (props) => {
   const [schedules, setSchedules] = useState();
@@ -24,6 +25,24 @@ const App = (props) => {
   const createSchedule = (schedule) => {
     fetch("http://localhost:3000/schedules", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ schedule }),
+    })
+      .then((response) => response.json())
+      .then(() => readSchedule())
+      .catch((error) => console.error(error));
+  };
+
+/*
+commented out because this will be used later when show is working on backend. Until then, this code would break a lot of what we are working on
+*/
+
+  const updateSchedule = (schedule, id) => {
+    console.log(schedule, id)
+    fetch(`http://localhost:3000/schedules/${id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,6 +73,14 @@ const App = (props) => {
           path="/newschedule"
           element={<NewSchedule {...props} createSchedule={createSchedule} />}
           />
+        <Route
+          exact
+          path="/scheduleedit/:id"
+          element={
+            <ScheduleEdit {...props} updateSchedule={updateSchedule} schedules={schedules}
+            />
+          }
+        />
 
       </Routes>
     </BrowserRouter>

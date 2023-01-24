@@ -21,7 +21,7 @@ const NewSchedule = ({ createSchedule, logged_in, current_user }) => {
   return (
     
     <form className='min-h-screen bg-gradient-to-br from-[#7DAFC7] to-white flex flex-col items-center font-mono italic'>
-    <h2 class= 'text-white text-4xl mb-8 mt-10'>Schedule</h2>
+    <h2 className= 'text-white text-4xl mb-8 mt-10'>Schedule</h2>
     <label htmlFor="name" className="block">
       <span className="block text-sm font-medium text-slate-700 ">Schedule Name</span>
       <input type="text" name="name" className="block text-sm font-md leading-5 text-[#4F4F4F] rounded-full mb-10" onChange={handleChange} value={newSchedule.name} />
@@ -33,10 +33,10 @@ const NewSchedule = ({ createSchedule, logged_in, current_user }) => {
     </label>
 
     <NavLink to={'/schedulesindex'}>
-    <button onClick={handleSubmit} name="submit" class="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Create</button>
+    <button onClick={handleSubmit} name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Create</button>
     </NavLink>
     <NavLink to={'/schedulesindex'}>
-    <button onClick={handleSubmit} name="submit" class="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Cancel</button>
+    <button name="submit" className="rounded-full bg-gray-400 bg-opacity-50 mt-5 p-4 text-white text-xl">Cancel</button>
     </NavLink>
   </form>
   )

@@ -39,4 +39,32 @@ end
     expect(response).to have_http_status(422)
   end
 end
+describe "PATCH /update" do
+  context "with valid parameters" do 
+    let (:new_attributes) do 
+      {"name" => "small muscles",
+      "days_per_week" => 6,
+      "user_id" => 1
+    }
+    end
+    it "updates a schedule" do
+      schedule = Schedule.new(valid_schedule)
+      schedule.save
+      patch schedule_url(schedule), params: {schedule: new_attributes}
+      schedule.reload 
+      expect(response).to have_http_status(200)
+      expect(schedule.name).to eq "small muscles"
+      
+      end
+    end
+    context "with invalid parameters" do 
+      it "expecting a 422 error" do
+        schedule = Schedule.new(valid_schedule)
+        schedule.save
+        patch schedule_url(schedule), params: {schedule: invalid_schedule}
+        schedule.reload 
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
 end
