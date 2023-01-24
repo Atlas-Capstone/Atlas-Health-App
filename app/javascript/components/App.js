@@ -1,42 +1,17 @@
-
-// Begin react imports
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// End react imports
-
-
-// Begin components imports
+import Home from "./pages/Home";
 import Header from "./components/Header";
-import ExerciseRoutines from "./components/ExerciseRoutines";
-// End components
-
-
-// Begin pages imports
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
-import Home from "./pages/Home";
 import NewSchedule from './pages/NewSchedule'
 import ScheduleEdit from "./pages/ScheduleEdit";
 
-
 const App = (props) => {
-
-  // Begin state functions
-
   const [schedules, setSchedules] = useState();
-
-  const [exercises, setExercises] = useState();
-
-  const [exerciseRoutines, setExerciseRoutines] = useState();
-
   useEffect(() => {
     readSchedule();
-    readExercise();
-    readExerciseRoutines();
   }, []);
-
-  // End state functions
-  // Begin fetch functions
 
   const readSchedule = () => {
     fetch("/schedules")
@@ -46,28 +21,6 @@ const App = (props) => {
       })
       .catch((error) => console.log(error));
   };
-
-
-  const readExercise = () => {
-    fetch("/exercises")
-      .then((response) => response.json())
-      .then((payload) => {
-        setExercises(payload);
-        
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const readExerciseRoutines = () => {
-    fetch("/exercise_routines")
-      .then((response) => response.json())
-      .then((payload) => {
-        setExerciseRoutines(payload);
-        console.log(payload);
-      })
-      .catch((error) => console.log(error));
-  };
-
 
   const createSchedule = (schedule) => {
     fetch("http://localhost:3000/schedules", {
@@ -100,32 +53,21 @@ commented out because this will be used later when show is working on backend. U
       .catch((error) => console.error(error));
   };
 
-
   return (
-
     <BrowserRouter>
-
       <Header {...props} />
-
       <Routes>
-
-        <Route exact path="/" 
-          element={<Home {...props} />}
-         />
-
-        <Route exact path="/schedulesindex"
+        <Route exact path="/" element={<Home {...props} />} />
+        <Route
+          exact
+          path="/schedulesindex"
           element={<ScheduleIndex {...props} schedules={schedules} />}
         />
-
-        <Route exact path="/myschedulesindex"
+        <Route
+          exact
+          path="/myschedulesindex"
           element={<MyScheduleIndex {...props} schedules={schedules} />}
         />
-
-
-        <Route exact path="/exerciseroutines/:id"
-          element={<ExerciseRoutines {...props} exercises={exercises}
-          exerciseRoutines = {exerciseRoutines} />}
-
         <Route
           exact
           path="/newschedule"
@@ -142,7 +84,7 @@ commented out because this will be used later when show is working on backend. U
 
       </Routes>
     </BrowserRouter>
-  ); // End return statement
-}; // End App
+  );
+};
 
 export default App;
