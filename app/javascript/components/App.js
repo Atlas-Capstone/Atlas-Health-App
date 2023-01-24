@@ -88,7 +88,7 @@ commented out because this will be used later when show is working on backend. U
 
   const updateSchedule = (schedule, id) => {
     console.log(schedule, id)
-    fetch(`http://localhost:3000/schedules/${id}`, {
+    fetch(`/schedules/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +102,7 @@ commented out because this will be used later when show is working on backend. U
   };
 
   const deleteSchedule = (id) => {
-    fetch(`http://localhost:3000/schedules/${id}`, {
+    fetch(`/schedules/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },
