@@ -1,7 +1,29 @@
+
 require 'rails_helper'
 
 RSpec.describe "Schedules", type: :request do
-  current_user = User.first_or_create!(email: 'dean@example.com', password: 'password', password_confirmation: 'password', user_name: "dean", age: 27, height: 71, weight: 295, gender: 'male')
+
+  # Please model test after model below
+
+  # belongs_to :user
+  
+  # has_many :exercise_routines
+
+  # validates :days_per_week, numericality: { greater_than_or_equal_to: 0 }
+
+  # validates :name, presence: true
+
+  current_user = User.first_or_create!(
+    email: 'dean@example.com', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    user_name: "dean", 
+    age: 27, 
+    height: 71, 
+    weight: 295, 
+    gender: 'male'
+  )
+
   let(:valid_schedule) do {
     "name" => "big muscles",
     "days_per_week" => 6,
@@ -17,7 +39,9 @@ RSpec.describe "Schedules", type: :request do
   end
 
   describe "GET /index" do
+
     it "gets a list of schedules " do
+
     schedules = Schedule.new(valid_schedule)
     schedules.user = current_user
     schedules.save
@@ -68,3 +92,4 @@ describe "PATCH /update" do
     end
   end
 end
+

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+
 import hamburger from "/app/assets/images/hamburger.png";
+
 import { NavLink } from "react-router-dom";
+
+// End imports
+// Begin Header definition
 
 const Header = ({
   logged_in,
@@ -9,26 +14,28 @@ const Header = ({
   sign_in_route,
   sign_out_route,
 }) => {
+
   const [menuVisible, setMenuVisible] = useState(false);
+
   return (
+
     <nav className= "flex items-center justify-between flex-wrap bg-black px-6">
+
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
+
       <div className="block lg:hidden">
-        <button
-          onClick={() => {
-            setMenuVisible(!menuVisible);
-          }}
-          className="flex items-center px-3 py-2  text-teal-200 "
-        >
+
+        <button onClick={() => { setMenuVisible(!menuVisible); }}
+          className="flex items-center px-3 py-2  text-teal-200 ">
+
           <img src={hamburger} alt="hamburger" height={50} width={50}></img>
         </button>
       </div>
-      <div
-        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right ${
-          !menuVisible && "hidden"
-        }`}
-      >
+
+      <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right ${ !menuVisible && "hidden" }`} >
+
         <div className="text-sm lg:flex-grow">
+
           {logged_in && (
             <>
               <a
@@ -74,6 +81,7 @@ const Header = ({
           >
             All Schedules
           </NavLink>
+
 
         </div>
       </div>
