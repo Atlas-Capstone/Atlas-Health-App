@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_232904) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_25_210825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,17 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_232904) do
   end
 
   create_table "exercise_routines", force: :cascade do |t|
-    
     t.bigint "exercise_id", null: false
     t.bigint "schedule_id", null: false
-
-    # Begin test coverage
     t.integer "weight"
     t.integer "sets"
     t.integer "reps"
     t.string "day"
-    # End test coverage
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_exercise_routines_on_exercise_id"
@@ -43,27 +38,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_232904) do
   end
 
   create_table "exercises", force: :cascade do |t|
-    
-    # Begin test coverage
     t.string "name"
     t.string "description"
     t.string "category"
     t.string "difficulty"
     t.string "image"
-    # End test coverage
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "video"
   end
 
   create_table "schedules", force: :cascade do |t|
-    
-    # Begin test coverage
     t.string "name"
     t.integer "days_per_week"
     t.bigint "user_id", null: false
-    # End test coverage
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_schedules_on_user_id"
