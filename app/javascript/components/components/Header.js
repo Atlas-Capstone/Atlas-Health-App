@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import hamburger from "/app/assets/images/hamburger.png";
+import hamburger from "/app/assets/images/hamburger.png"
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
 // End imports
 // Begin Header definition
@@ -14,28 +14,35 @@ const Header = ({
   sign_in_route,
   sign_out_route,
 }) => {
-
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false)
 
   return (
-
-    <nav className= "flex items-center justify-between flex-wrap bg-black px-6">
-
+    <nav className="flex items-center justify-between flex-wrap bg-[#051821] px-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
 
       <div className="block lg:hidden">
-
-        <button onClick={() => { setMenuVisible(!menuVisible); }}
-          className="flex items-center px-3 py-2  text-teal-200 ">
-
+        <button
+          onClick={() => {
+            setMenuVisible(!menuVisible)
+          }}
+          className="flex items-center px-3 py-2  text-teal-200 "
+        >
           <img src={hamburger} alt="hamburger" height={50} width={50}></img>
         </button>
       </div>
 
-      <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right ${ !menuVisible && "hidden" }`} >
-
+      <div
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 ${
+          !menuVisible && "hidden"
+        }`}
+      >
         <div className="text-sm lg:flex-grow">
-
+          <NavLink
+            to="/"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Home
+          </NavLink>
           {logged_in && (
             <>
               <a
@@ -51,11 +58,17 @@ const Header = ({
                 My Schedules
               </NavLink>
               <NavLink
-            to="/newschedule"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            New Schedule
-          </NavLink>
+                to="/newschedule"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+              >
+                New Schedule
+              </NavLink>
+              <NavLink
+                to="/newsapi"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+              >
+                Fitness News
+              </NavLink>
             </>
           )}
 
@@ -81,6 +94,7 @@ const Header = ({
           >
             All Schedules
           </NavLink>
+
           <NavLink
             to="/exercisesindex"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
@@ -88,11 +102,10 @@ const Header = ({
             All Exercises
           </NavLink>
 
-
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
