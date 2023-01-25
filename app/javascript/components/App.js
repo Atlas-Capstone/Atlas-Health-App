@@ -14,8 +14,9 @@ import ExerciseRoutines from "./components/ExerciseRoutines";
 // Begin pages imports
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
+import ExerciseIndex from "./pages/ExerciseIndex";
 import Home from "./pages/Home";
-import NewSchedule from './pages/NewSchedule'
+import NewSchedule from './pages/NewSchedule';
 import ScheduleEdit from "./pages/ScheduleEdit";
 
 
@@ -127,6 +128,10 @@ commented out because this will be used later when show is working on backend. U
 
         <Route exact path="/schedulesindex"
           element={<ScheduleIndex {...props} schedules={schedules} />}
+        />
+
+        <Route exact path="/exercisesindex"
+          element={<ExerciseIndex {...props} exercises={exercises} />}
         />
 
         <Route exact path="/myschedulesindex"
