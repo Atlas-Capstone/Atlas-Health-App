@@ -4,8 +4,9 @@ import Header from "./components/Header";
 import ExerciseRoutines from "./pages/ExerciseRoutines";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
+import ExerciseIndex from "./pages/ExerciseIndex";
 import Home from "./pages/Home";
-import NewSchedule from './pages/NewSchedule'
+import NewSchedule from './pages/NewSchedule';
 import ScheduleEdit from "./pages/ScheduleEdit";
 import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 
@@ -128,6 +129,10 @@ const App = (props) => {
 
         <Route exact path="/schedulesindex"
           element={<ScheduleIndex {...props} schedules={schedules} />}
+        />
+
+        <Route exact path="/exercisesindex"
+          element={<ExerciseIndex {...props} exercises={exercises} />}
         />
 
         <Route exact path="/myschedulesindex"
