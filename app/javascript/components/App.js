@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/Header"
-import ExerciseRoutines from "./pages/ExerciseRoutines"
-import ScheduleIndex from "./pages/ScheduleIndex"
-import MyScheduleIndex from "./pages/MyScheduleIndex"
-import Home from "./pages/Home"
-import NewSchedule from "./pages/NewSchedule"
-import ScheduleEdit from "./pages/ScheduleEdit"
-import NewExerciseRoutine from "./pages/NewExerciseRoutine"
+
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import ExerciseRoutines from "./pages/ExerciseRoutines";
+import ScheduleIndex from "./pages/ScheduleIndex";
+import MyScheduleIndex from "./pages/MyScheduleIndex";
+import ExerciseIndex from "./pages/ExerciseIndex";
+import Home from "./pages/Home";
+import NewSchedule from './pages/NewSchedule';
+import ScheduleEdit from "./pages/ScheduleEdit";
+import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 import NewsApi from "./pages/NewsApi"
+
 
 const App = (props) => {
   const [schedules, setSchedules] = useState()
@@ -119,16 +122,13 @@ const App = (props) => {
           element={<ScheduleIndex {...props} schedules={schedules} />}
         />
 
-        <Route
-          exact
-          path="/myschedulesindex"
-          element={
-            <MyScheduleIndex
-              {...props}
-              deleteSchedule={deleteSchedule}
-              schedules={schedules}
-            />
-          }
+
+        <Route exact path="/exercisesindex"
+          element={<ExerciseIndex {...props} exercises={exercises} />}
+        />
+
+        <Route exact path="/myschedulesindex"
+          element={<MyScheduleIndex {...props} deleteSchedule={deleteSchedule} schedules={schedules} />}
         />
 
         <Route

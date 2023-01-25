@@ -94,6 +94,14 @@ const Header = ({
           >
             All Schedules
           </NavLink>
+
+          <NavLink
+            to="/exercisesindex"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            All Exercises
+          </NavLink>
+
         </div>
       </div>
     </nav>
