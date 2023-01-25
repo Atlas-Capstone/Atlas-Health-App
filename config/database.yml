@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: atlas_health_production
-  username: atlas_health
-  password: <%= ENV["ATLAS_HEALTH_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
