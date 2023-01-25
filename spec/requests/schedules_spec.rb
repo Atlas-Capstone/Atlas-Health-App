@@ -3,16 +3,6 @@ require 'rails_helper'
 
 RSpec.describe "Schedules", type: :request do
 
-  # Please model test after model below
-
-  # belongs_to :user
-  
-  # has_many :exercise_routines
-
-  # validates :days_per_week, numericality: { greater_than_or_equal_to: 0 }
-
-  # validates :name, presence: true
-
   current_user = User.first_or_create!(
     email: 'dean@example.com', 
     password: 'password', 
@@ -38,49 +28,56 @@ RSpec.describe "Schedules", type: :request do
   }
   end
 
+
   describe "GET /index" do
-
     it "gets a list of schedules " do
+      schedules = Schedule.new(valid_schedule)
+      schedules.user = current_user
+      schedules.save
+      get '/schedules'
+      schedules = JSON.parse(response.body)
+      expect(response).to have_http_status(200)
+      expect(schedules.length).to eq 1
+    end
+  end 
 
-    schedules = Schedule.new(valid_schedule)
-    schedules.user = current_user
-    schedules.save
-    get '/schedules'
-    schedules = JSON.parse(response.body)
-    expect(response).to have_http_status(200)
-    expect(schedules.length).to eq 1
-  end
-end 
   describe "POST /create" do
+
     it "creates a schedule" do
       post schedules_url, params: {schedule: valid_schedule}
       expect(response).to have_http_status(200)
       schedule = Schedule.first
       expect(schedule.name).to eq "big muscles"
   end
-  it "gives a 422 error" do
-    post schedules_url, params: {schedule: invalid_schedule}
-    expect(response).to have_http_status(422)
-  end
-end
-describe "PATCH /update" do
-  context "with valid parameters" do 
-    let (:new_attributes) do 
-      {"name" => "small muscles",
-      "days_per_week" => 6,
-      "user_id" => 1
-    }
+
+    it "gives a 422 error" do
+      post schedules_url, params: {schedule: invalid_schedule}
+      expect(response).to have_http_status(422)
     end
-    it "updates a schedule" do
-      schedule = Schedule.new(valid_schedule)
-      schedule.save
-      patch schedule_url(schedule), params: {schedule: new_attributes}
-      schedule.reload 
-      expect(response).to have_http_status(200)
-      expect(schedule.name).to eq "small muscles"
-      
+  end
+
+  describe "PATCH /update" do
+
+    context "with valid parameters" do 
+
+      let (:new_attributes) do 
+        {
+          "name" => "small muscles",
+          "days_per_week" => 6,
+          "user_id" => 1
+        }
+      end
+
+      it "updates a schedule" do
+        schedule = Schedule.new(valid_schedule)
+        schedule.save
+        patch schedule_url(schedule), params: {schedule: new_attributes}
+        schedule.reload 
+        expect(response).to have_http_status(200)
+        expect(schedule.name).to eq "small muscles"
       end
     end
+
     context "with invalid parameters" do 
       it "expecting a 422 error" do
         schedule = Schedule.new(valid_schedule)
@@ -90,8 +87,8 @@ describe "PATCH /update" do
         expect(response).to have_http_status(422)
       end
     end
-
   end
+
   describe "DESTROY /delete" do
     it "deletes a schedule" do
       schedule = Schedule.new(valid_schedule)
