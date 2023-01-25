@@ -1,40 +1,39 @@
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
+  const { id } = useParams()
 
-    const { id } = useParams();
+  const navigate = useNavigate()
 
-    const navigate = useNavigate();
+  const [newExerciseRoutine, setNewExerciseRoutine] = useState({
+    exercise_id: 1,
+    schedule_id: id,
+    sets: "",
+    reps: "",
+    day: "Monday",
+    weight: "",
+  })
 
-    const [newExerciseRoutine, setNewExerciseRoutine] = useState({
-        exercise_id: "",
-        schedule_id: id,
-        sets: "",
-        reps: "",
-        day: "",
-        weight: ""
+  const handleChange = (e) => {
+    setNewExerciseRoutine({
+      ...newExerciseRoutine,
+      [e.target.name]: e.target.value,
     })
+  }
 
-    const handleChange = (e) => {
-        setNewExerciseRoutine({...newExerciseRoutine, [e.target.name] :e.target.value})
-    }
-
-    const handleSubmit =() => {
-        createExerciseRoutine(newExerciseRoutine)
-        navigate(`/exerciseroutines/${id}`)
-    }
+  const handleSubmit = () => {
+    createExerciseRoutine(newExerciseRoutine)
+    // navigate(`/exerciseroutines/${id}`)
+  }
 
   return (
-
     <div className="flex flex-col items-center bg-gradient-to-b from-[#7DAFC7] to-[#FFFFFF] min-h-screen">
-
       <h1 className="text-3xl text-white mt-5">Create Exercise Routine</h1>
 
       <div className="w-full max-w-xs">
         <form className="p-8">
           <div className="mb-4">
-
             <label
               htmlFor="exercise_id"
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -46,14 +45,14 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
               name="exercise_id"
               id="exercise_id"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={handleChange}>
-
+              onChange={handleChange}
+            >
               {exercises?.map((ex, index) => (
-                <option key={index} value={ex.id}>{ex.name}</option>
+                <option key={index} value={ex.id}>
+                  {ex.name}
+                </option>
               ))}
-
             </select>
-
           </div>
 
           <div className="mb-4">
@@ -63,7 +62,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             >
               Weight in lb
             </label>
-            
+
             <input
               onChange={handleChange}
               name="weight"
@@ -73,7 +72,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             ></input>
           </div>
-          
+
           <div className="mb-4">
             <label
               htmlFor="sets"
@@ -83,6 +82,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             </label>
 
             <input
+              required
               onChange={handleChange}
               name="sets"
               min={0}
@@ -145,7 +145,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
         </form>
       </div>
     </div>
-)
+  )
 }
 
 export default NewExerciseRoutine
