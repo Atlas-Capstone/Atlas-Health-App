@@ -1,35 +1,38 @@
 import React, { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
+const EditExerciseRoutine = ({ exercises, updateExerciseRoutine, exerciseRoutines }) => {
+
   const { id } = useParams()
+
+  const currentExerciseRoutine = exerciseRoutines?.find(item => item.id === +id)
 
   const navigate = useNavigate()
 
-  const [newExerciseRoutine, setNewExerciseRoutine] = useState({
-    exercise_id: 1,
-    schedule_id: id,
-    sets: "",
-    reps: "",
-    day: "Monday",
-    weight: "",
+  const [editExerciseRoutine, setEditExerciseRoutine] = useState({
+    exercise_id: currentExerciseRoutine?.exercise_id,
+    schedule_id: currentExerciseRoutine?.schedule_id,
+    sets: currentExerciseRoutine?.sets,
+    reps: currentExerciseRoutine?.reps,
+    day: currentExerciseRoutine?.day,
+    weight:currentExerciseRoutine?.weight,
   })
 
   const handleChange = (e) => {
-    setNewExerciseRoutine({
-      ...newExerciseRoutine,
+    setEditExerciseRoutine({
+      ...editExerciseRoutine,
       [e.target.name]: e.target.value,
     })
   }
 
   const handleSubmit = () => {
-    createExerciseRoutine(newExerciseRoutine)
-    navigate(`/exerciseroutines/${id}`)
+    updateExerciseRoutine(editExerciseRoutine, id)
+    navigate(`/exerciseroutines/${editExerciseRoutine?.schedule_id}`)
   }
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-[#7DAFC7] to-[#FFFFFF] min-h-screen">
-      <h1 className="text-3xl text-white mt-5">Create Exercise Routine</h1>
+      <h1 className="text-3xl text-white mt-5">Edit Exercise Routine</h1>
 
       <div className="w-full max-w-xs">
         <form className="p-8">
@@ -44,6 +47,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             <select
               name="exercise_id"
               id="exercise_id"
+              value={editExerciseRoutine?.exercise_id}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={handleChange}
             >
@@ -64,6 +68,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             </label>
 
             <input
+              value={editExerciseRoutine?.weight}
               onChange={handleChange}
               name="weight"
               min={0}
@@ -83,6 +88,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
 
             <input
               required
+              value={editExerciseRoutine?.sets}
               onChange={handleChange}
               name="sets"
               min={0}
@@ -101,6 +107,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             </label>
 
             <input
+              value={editExerciseRoutine?.reps}
               onChange={handleChange}
               name="reps"
               min={0}
@@ -119,6 +126,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
             </label>
 
             <select
+              value={editExerciseRoutine?.day}
               onChange={handleChange}
               name="day"
               id="day"
@@ -139,7 +147,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
               type="button"
               onClick={handleSubmit}
             >
-              Create
+              Update
             </button>
           </div>
         </form>
@@ -148,4 +156,4 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
   )
 }
 
-export default NewExerciseRoutine
+export default EditExerciseRoutine

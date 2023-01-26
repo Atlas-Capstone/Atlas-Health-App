@@ -11,9 +11,11 @@ import NewSchedule from './pages/NewSchedule';
 import ScheduleEdit from "./pages/ScheduleEdit";
 import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 import NewsApi from "./pages/NewsApi"
+import EditExerciseRoutine from "./pages/EditExerciseRoutine";
 
 
 const App = (props) => {
+
   const [schedules, setSchedules] = useState()
 
   const [exercises, setExercises] = useState()
@@ -109,6 +111,33 @@ const App = (props) => {
       .catch((errors) => console.log("delete errors:", errors))
   }
 
+
+  const updateExerciseRoutine= (exerciseRoutine, id) => {
+    fetch(`/exercise_routines/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify(exerciseRoutine),
+    })
+      .then((response) => response.json())
+      .then(() => readExerciseRoutines())
+      .catch((errors) => console.log("edit errors:", errors))
+  }
+
+  
+  const deleteExerciseRoutine= (id) => {
+    fetch(`/exercise_routines/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => readExerciseRoutines())
+      .catch((errors) => console.log("edit errors:", errors))
+  }
+
   return (
     <BrowserRouter>
       <Header {...props} />
@@ -119,16 +148,19 @@ const App = (props) => {
         <Route
           exact
           path="/schedulesindex"
-          element={<ScheduleIndex {...props} schedules={schedules} />}
+          element={<ScheduleIndex {...props} 
+          schedules={schedules} />}
         />
 
-
         <Route exact path="/exercisesindex"
-          element={<ExerciseIndex {...props} exercises={exercises} />}
+          element={<ExerciseIndex {...props} 
+          exercises={exercises} />}
         />
 
         <Route exact path="/myschedulesindex"
-          element={<MyScheduleIndex {...props} deleteSchedule={deleteSchedule} schedules={schedules} />}
+          element={<MyScheduleIndex {...props} 
+          deleteSchedule={deleteSchedule} 
+          schedules={schedules} />}
         />
 
         <Route
@@ -139,6 +171,7 @@ const App = (props) => {
               {...props}
               exercises={exercises}
               exerciseRoutines={exerciseRoutines}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           }
         />
@@ -173,6 +206,20 @@ const App = (props) => {
             />
           }
         />
+
+        <Route exact
+          path="/editexerciseroutine/:id"
+          element={
+            <EditExerciseRoutine
+              {...props}
+              updateExerciseRoutine={updateExerciseRoutine}
+              schedules={schedules}
+              exercises={exercises}
+              exerciseRoutines={exerciseRoutines}
+            />
+          }
+        />
+
         <Route exact path="/newsapi" element={<NewsApi {...props} />} />
       </Routes>
     </BrowserRouter>

@@ -7,8 +7,11 @@ const ExerciseRoutines = ({
   exercises,
   exerciseRoutines,
   logged_in,
+  deleteExerciseRoutine
 }) => {
+
   const { id } = useParams()
+  
   const currentRoutines = exerciseRoutines?.filter(
     (item) => item.schedule_id === +id
   )
@@ -44,6 +47,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={mondayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -52,6 +56,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={tuesdayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -60,6 +65,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={wednesdayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -68,6 +74,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={thursdayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -76,6 +83,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={fridayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -84,6 +92,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={saturdayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
@@ -92,6 +101,7 @@ const ExerciseRoutines = ({
             <ExerciseRoutineCard
               exerciseRoutine={sundayRoutine}
               exercises={exercises}
+              deleteExerciseRoutine={deleteExerciseRoutine}
             />
           </div>
         )}
