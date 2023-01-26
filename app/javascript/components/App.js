@@ -6,6 +6,7 @@ import ExerciseRoutines from "./pages/ExerciseRoutines";
 import ScheduleIndex from "./pages/ScheduleIndex";
 import MyScheduleIndex from "./pages/MyScheduleIndex";
 import ExerciseIndex from "./pages/ExerciseIndex";
+import ExerciseShow from "./pages/ExerciseShow"
 import Home from "./pages/Home";
 import NewSchedule from './pages/NewSchedule';
 import ScheduleEdit from "./pages/ScheduleEdit";
@@ -155,6 +156,10 @@ const App = (props) => {
         <Route exact path="/exercisesindex"
           element={<ExerciseIndex {...props} 
           exercises={exercises} />}
+        />
+
+<Route exact path="/exerciseshow/:id"
+          element={<ExerciseShow {...props} exercises={exercises} />}
         />
 
         <Route exact path="/myschedulesindex"
