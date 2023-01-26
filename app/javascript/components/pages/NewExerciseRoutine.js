@@ -24,7 +24,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
 
   const handleSubmit = () => {
     createExerciseRoutine(newExerciseRoutine)
-    // navigate(`/exerciseroutines/${id}`)
+    navigate(`/exerciseroutines/${id}`)
   }
 
   return (
