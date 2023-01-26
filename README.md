@@ -10,7 +10,7 @@
 
 [Modify and check JS files](#modify-and-check-javascript-files)
 
-[Jest testing with impoted images or media](#jest-testing-with-imported-images-or-media)
+[Jest testing with imported images or media](#jest-testing-with-imported-images-or-media)
 
 # Cloning Setup
 
@@ -291,4 +291,16 @@ If you run into problems with jest testing with imported images or media files t
 Also in the root directory create a folder called mocks. In that folder create a file called fileMock.js. In that file put in this code.
 ``` javascript
 export default "";
+```
+
+``` ruby
+
+Jan 26 10:01:53 AM  rake aborted!
+
+Jan 26 10:01:53 AM  ActiveRecord::NotNullViolation: PG::NotNullViolation: ERROR:  null value in column "user_id" of relation "schedules" violates not-null constraint
+
+Jan 26 10:01:53 AM  DETAIL:  Failing row contains (3, Full Body Workout, 3, null, 2023-01-26 18:01:53.906966, 2023-01-26 18:01:53.906966).
+
+Jan 26 10:01:53 AM  /opt/render/project/.gems/ruby/3.0.0/gems/activerecord-7.0.4.1/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in `exec_params'
+
 ```

@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 
 # Create users
 user1 = User.create(email: "user1@example.com", user_name: 'user1', password: "password", age: 25, height: 180, weight: 75, gender: "female")
@@ -26,12 +19,14 @@ military_press = Exercise.create(name: "Military Press", description: "A compoun
 
 bend_over_row = Exercise.create(name: "Bend Over Row", description: "A compound exercise that primarily targets the muscles of the back and lower back.", category: "Strength", difficulty: "Intermediate", image: "https://thumbs.dreamstime.com/b/art-illustration-199936553.jpg", video:"https://www.youtube.com/embed/UL8ZcK64KxA")
 
+
 # Create schedules
-routine1 = Schedule.create(name: "Full Body Workout", days_per_week: 3, user: user1)
+routine1 = Schedule.create(name: "Full Body Workout", days_per_week: 3, user_id: user1.id)
 
-routine2 = Schedule.create(name: "Upper Body Workout", days_per_week: 1, user: user2)
+routine2 = Schedule.create(name: "Upper Body Workout", days_per_week: 1, user_id: user2.id)
 
-strength_routine = Schedule.create(name: "Three Day Strength", days_per_week: 3, user: user1)
+strength_routine = Schedule.create(name: "Three Day Strength", days_per_week: 3, user_id: user1.id)
+
 
 # Create exercise_routines
 er1 = ExerciseRoutine.create(exercise: squat, schedule: routine1, sets: 3, reps: 12, weight: 100, day: "Monday")
@@ -53,7 +48,6 @@ bench_press_routine2 = ExerciseRoutine.create(exercise: bench_press, schedule: s
 military_press_routine = ExerciseRoutine.create(exercise: military_press, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
 
 deadlift_routine = ExerciseRoutine.create(exercise: deadlift, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
-
 
 
 # Create completed_routines
