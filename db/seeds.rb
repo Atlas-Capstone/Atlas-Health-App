@@ -29,28 +29,28 @@ strength_routine = Schedule.create(name: "Three Day Strength", days_per_week: 3,
 
 
 # Create exercise_routines
-er1 = ExerciseRoutine.create(exercise: squat, schedule: routine1, sets: 3, reps: 12, weight: 100, day: "Monday")
+er1 = ExerciseRoutine.create(exercise: squat, schedule_id: routine1, sets: 3, reps: 12, weight: 100, day: "Monday")
 
-er2 = ExerciseRoutine.create(exercise: push_ups, schedule: routine1, sets: 3, reps: 10, weight: 150,day: "Monday")
+er2 = ExerciseRoutine.create(exercise: push_ups, schedule_id: routine1, sets: 3, reps: 10, weight: 150,day: "Monday")
 
-er3 = ExerciseRoutine.create(exercise: running, schedule: routine2, sets: 3, reps: 30, weight: 200,day: "Tuesday")
+er3 = ExerciseRoutine.create(exercise: running, schedule_id: routine2, sets: 3, reps: 30, weight: 200,day: "Tuesday")
 
-squat_routine = ExerciseRoutine.create(exercise: squat, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
+squat_routine = ExerciseRoutine.create(exercise: squat, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
 
-bench_press_routine = ExerciseRoutine.create(exercise: bench_press, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
+bench_press_routine = ExerciseRoutine.create(exercise: bench_press, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
 
-bent_over_row_routine = ExerciseRoutine.create(exercise: bend_over_row, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
+bent_over_row_routine = ExerciseRoutine.create(exercise: bend_over_row, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Monday")
 
-squat_routine2 = ExerciseRoutine.create(exercise: squat, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Friday")
+squat_routine2 = ExerciseRoutine.create(exercise: squat, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Friday")
 
-bench_press_routine2 = ExerciseRoutine.create(exercise: bench_press, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Friday")
+bench_press_routine2 = ExerciseRoutine.create(exercise: bench_press, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Friday")
 
-military_press_routine = ExerciseRoutine.create(exercise: military_press, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
+military_press_routine = ExerciseRoutine.create(exercise: military_press, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
 
-deadlift_routine = ExerciseRoutine.create(exercise: deadlift, schedule: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
+deadlift_routine = ExerciseRoutine.create(exercise: deadlift, schedule_id: strength_routine, sets: 5, reps: 5, weight: 100, day: "Wednesday")
 
 
 # Create completed_routines
-CompletedRoutine.create(exercise_routine: er1, user: user1, completed_at: Date.today)
+CompletedRoutine.create(exercise_routine: er1, user_id: user1.id, completed_at: Date.today)
 
-CompletedRoutine.create(exercise_routine: er2, user: user2, completed_at: Date.today)
+CompletedRoutine.create(exercise_routine: er2, user_id: user2.id, completed_at: Date.today)
