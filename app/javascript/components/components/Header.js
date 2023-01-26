@@ -17,7 +17,7 @@ const Header = ({
   const [menuVisible, setMenuVisible] = useState(false)
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-[#051821] px-6">
+    <nav className="lg:py-4 flex items-center justify-between flex-wrap bg-[#051821] px-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
 
       <div className="block lg:hidden">
@@ -32,7 +32,7 @@ const Header = ({
       </div>
 
       <div
-        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 ${
+        className={`transition duration-500 ease-in-out w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 ${
           !menuVisible && "hidden"
         }`}
       >
@@ -82,7 +82,7 @@ const Header = ({
               </a>
               <a
                 href={new_user_route}
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+                className="block mt-4 mr-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               >
                 Sign Up
               </a>
@@ -93,6 +93,13 @@ const Header = ({
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           >
             All Schedules
+          </NavLink>
+
+          <NavLink
+            to="/aboutus"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            About Us
           </NavLink>
 
           <NavLink
