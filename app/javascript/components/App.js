@@ -13,6 +13,7 @@ import ScheduleEdit from "./pages/ScheduleEdit";
 import NewExerciseRoutine from "./pages/NewExerciseRoutine";
 import NewsApi from "./pages/NewsApi"
 import EditExerciseRoutine from "./pages/EditExerciseRoutine";
+import AboutUs from "./pages/AboutUs";
 
 
 const App = (props) => {
@@ -226,6 +227,9 @@ const App = (props) => {
         />
 
         <Route exact path="/newsapi" element={<NewsApi {...props} />} />
+
+        <Route exact path="/aboutus" element={<AboutUs {...props} />} />
+        
       </Routes>
     </BrowserRouter>
   ) // End return statement
