@@ -11,7 +11,7 @@ const MyScheduleIndex = ({
   deleteSchedule,
 }) => {
   return (
-    <div className=" bg-gradient-to-br from-cyan-500 to-white  pr-2 min-h-screen gap-2 flex flex-col items-center">
+    <div className=" bg-gradient-to-br from-[#7DAFC7] to-white  pr-2 min-h-screen gap-2 flex flex-col items-center">
       <h1 className="text-white text-2xl lg:text-5xl my-5">Schedules</h1>
 
       {schedules

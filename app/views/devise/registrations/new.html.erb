@@ -43,8 +43,8 @@
 </div>
 
 <div class="field">
-<%= f.label :gender, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
-<%= f.text_field :gender, class: "rounded-full", autofocus: true, autocomplete: "gender" %>
+  <%= f.label :gender, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
+  <%= f.select :gender, options_for_select(["male", "female", "other"]), {}, { class: "rounded-full", autofocus: true, autocomplete: "gender" } %>
 </div>
 
   <div class="actions flex justify-center">
