@@ -17,7 +17,7 @@ const Header = ({
   const [menuVisible, setMenuVisible] = useState(false)
 
   return (
-    <nav className="lg:py-4 flex items-center justify-between flex-wrap bg-[#051821] px-6 ">
+    <nav className="lg:py-4 flex items-center justify-between flex-wrap bg-[#051821] px-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
 
       <div className="block lg:hidden">
@@ -32,10 +32,10 @@ const Header = ({
       </div>
 
       <div
-        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 h-auto  ${
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 lg:translate-x-0 h-auto lg:h-auto ${
           !menuVisible
-            ? "h-0 overflow-hidden translate-y-full transition duration-2000 ease-in-out"
-            : "translate-y-0 transition duration-2000 ease-in-out"
+            ? "h-0 overflow-hidden -translate-x-full transition duration-2000 ease-in-out"
+            : "translate-x-0 transition duration-2000 ease-in-out"
         }`}
       >
         <div className="text-sm lg:flex-grow ">
@@ -85,6 +85,24 @@ const Header = ({
                 }}
               >
                 Exercise Wiki
+              </NavLink>
+              <NavLink
+                to="/calories"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
+              >
+                Calories Burned
+              </NavLink>
+              <NavLink
+                to="/foodcalories"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
+              >
+                Calories Ingested
               </NavLink>
             </>
           )}
