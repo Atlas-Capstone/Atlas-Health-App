@@ -17,7 +17,7 @@ const Header = ({
   const [menuVisible, setMenuVisible] = useState(false)
 
   return (
-    <nav className="lg:py-4 flex items-center justify-between flex-wrap bg-[#051821] px-6">
+    <nav className="lg:py-4 flex items-center justify-between flex-wrap bg-[#051821] px-6 ">
       <div className="flex items-center flex-shrink-0 text-white mr-6"></div>
 
       <div className="block lg:hidden">
@@ -32,14 +32,19 @@ const Header = ({
       </div>
 
       <div
-        className={`transition duration-500 ease-in-out w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 ${
-          !menuVisible && "hidden"
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto text-right pb-3 h-auto  ${
+          !menuVisible
+            ? "h-0 overflow-hidden translate-y-full transition duration-2000 ease-in-out"
+            : "translate-y-0 transition duration-2000 ease-in-out"
         }`}
       >
-        <div className="text-sm lg:flex-grow">
+        <div className="text-sm lg:flex-grow ">
           <NavLink
             to="/"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            onClick={() => {
+              setMenuVisible(!menuVisible)
+            }}
           >
             Home
           </NavLink>
@@ -48,26 +53,38 @@ const Header = ({
               <a
                 href={sign_out_route}
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
               >
                 Sign Out
               </a>
               <NavLink
                 to="/myschedulesindex"
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
               >
                 My Schedules
               </NavLink>
               <NavLink
                 to="/newschedule"
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
               >
                 New Schedule
               </NavLink>
               <NavLink
-                to="/newsapi"
+                to="/exerciseapi"
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
               >
-                Fitness News
+                Exercise Wiki
               </NavLink>
             </>
           )}
@@ -77,11 +94,17 @@ const Header = ({
               <a
                 href={sign_in_route}
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
               >
                 Sign In
               </a>
               <a
                 href={new_user_route}
+                onClick={() => {
+                  setMenuVisible(!menuVisible)
+                }}
                 className="block mt-4 mr-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               >
                 Sign Up
@@ -91,6 +114,9 @@ const Header = ({
           <NavLink
             to="/schedulesindex"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            onClick={() => {
+              setMenuVisible(!menuVisible)
+            }}
           >
             All Schedules
           </NavLink>
@@ -98,6 +124,9 @@ const Header = ({
           <NavLink
             to="/aboutus"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            onClick={() => {
+              setMenuVisible(!menuVisible)
+            }}
           >
             About Us
           </NavLink>
@@ -105,10 +134,12 @@ const Header = ({
           <NavLink
             to="/exercisesindex"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            onClick={() => {
+              setMenuVisible(!menuVisible)
+            }}
           >
             All Exercises
           </NavLink>
-
         </div>
       </div>
     </nav>

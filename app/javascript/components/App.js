@@ -1,27 +1,22 @@
-
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import ExerciseRoutines from "./pages/ExerciseRoutines";
-import ScheduleIndex from "./pages/ScheduleIndex";
-import MyScheduleIndex from "./pages/MyScheduleIndex";
-import ExerciseIndex from "./pages/ExerciseIndex";
+import React, { useEffect, useState } from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Header from "./components/Header"
+import ExerciseRoutines from "./pages/ExerciseRoutines"
+import ScheduleIndex from "./pages/ScheduleIndex"
+import MyScheduleIndex from "./pages/MyScheduleIndex"
+import ExerciseIndex from "./pages/ExerciseIndex"
 import ExerciseShow from "./pages/ExerciseShow"
-import Home from "./pages/Home";
-import NewSchedule from './pages/NewSchedule';
-import ScheduleEdit from "./pages/ScheduleEdit";
-import NewExerciseRoutine from "./pages/NewExerciseRoutine";
+import Home from "./pages/Home"
+import NewSchedule from "./pages/NewSchedule"
+import ScheduleEdit from "./pages/ScheduleEdit"
+import NewExerciseRoutine from "./pages/NewExerciseRoutine"
 import NewsApi from "./pages/NewsApi"
-import EditExerciseRoutine from "./pages/EditExerciseRoutine";
-
-import AboutUs from "./pages/AboutUs";
-
-import NotFound from "./pages/NotFound";
-
-
+import EditExerciseRoutine from "./pages/EditExerciseRoutine"
+import AboutUs from "./pages/AboutUs"
+import NotFound from "./pages/NotFound"
+import ApiExercise from "./pages/ApiExercise"
 
 const App = (props) => {
-
   const [schedules, setSchedules] = useState()
 
   const [exercises, setExercises] = useState()
@@ -89,7 +84,7 @@ const App = (props) => {
   }
 
   const createExerciseRoutine = (exRoutine) => {
-    fetch("http://localhost:3000/exercise_routines", {
+    fetch("/exercise_routines", {
       method: "POST",
 
       headers: {
@@ -117,8 +112,7 @@ const App = (props) => {
       .catch((errors) => console.log("delete errors:", errors))
   }
 
-
-  const updateExerciseRoutine= (exerciseRoutine, id) => {
+  const updateExerciseRoutine = (exerciseRoutine, id) => {
     fetch(`/exercise_routines/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -131,8 +125,7 @@ const App = (props) => {
       .catch((errors) => console.log("edit errors:", errors))
   }
 
-  
-  const deleteExerciseRoutine= (id) => {
+  const deleteExerciseRoutine = (id) => {
     fetch(`/exercise_routines/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -154,23 +147,31 @@ const App = (props) => {
         <Route
           exact
           path="/schedulesindex"
-          element={<ScheduleIndex {...props} 
-          schedules={schedules} />}
+          element={<ScheduleIndex {...props} schedules={schedules} />}
         />
 
-        <Route exact path="/exercisesindex"
-          element={<ExerciseIndex {...props} 
-          exercises={exercises} />}
+        <Route
+          exact
+          path="/exercisesindex"
+          element={<ExerciseIndex {...props} exercises={exercises} />}
         />
 
-<Route exact path="/exerciseshow/:id"
+        <Route
+          exact
+          path="/exerciseshow/:id"
           element={<ExerciseShow {...props} exercises={exercises} />}
         />
 
-        <Route exact path="/myschedulesindex"
-          element={<MyScheduleIndex {...props} 
-          deleteSchedule={deleteSchedule} 
-          schedules={schedules} />}
+        <Route
+          exact
+          path="/myschedulesindex"
+          element={
+            <MyScheduleIndex
+              {...props}
+              deleteSchedule={deleteSchedule}
+              schedules={schedules}
+            />
+          }
         />
 
         <Route
@@ -217,7 +218,8 @@ const App = (props) => {
           }
         />
 
-        <Route exact
+        <Route
+          exact
           path="/editexerciseroutine/:id"
           element={
             <EditExerciseRoutine
@@ -232,11 +234,10 @@ const App = (props) => {
 
         <Route path="*" element={<NotFound />} />
 
-
         <Route exact path="/newsapi" element={<NewsApi {...props} />} />
+        <Route exact path="/exerciseapi" element={<ApiExercise {...props} />} />
 
         <Route exact path="/aboutus" element={<AboutUs {...props} />} />
-        
       </Routes>
     </BrowserRouter>
   ) // End return statement
