@@ -8,7 +8,7 @@ const NewExerciseRoutine = ({ exercises, createExerciseRoutine }) => {
 
   const [newExerciseRoutine, setNewExerciseRoutine] = useState({
     exercise_id: 1,
-    schedule_id: id,
+    schedule_id: +id,
     sets: "",
     reps: "",
     day: "Monday",
