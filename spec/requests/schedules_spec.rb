@@ -28,11 +28,17 @@ RSpec.describe "Schedules", type: :request do
   }
   end
 
+  let (:updated_schedule) do 
+    {
+      "name" => "small muscles",
+      "days_per_week" => 6,
+      "user_id" => 1
+    }
+  end
 
   describe "GET /index" do
     it "gets a list of schedules " do
-      schedules = Schedule.new(valid_schedule)
-      schedules.user = current_user
+      schedules = Schedule.first_or_create(valid_schedule)
       schedules.save
       get '/schedules'
       schedules = JSON.parse(response.body)
@@ -46,7 +52,7 @@ RSpec.describe "Schedules", type: :request do
     it "creates a schedule" do
       post schedules_url, params: {schedule: valid_schedule}
       expect(response).to have_http_status(200)
-      schedule = Schedule.first
+      schedule = Schedule.last
       expect(schedule.name).to eq "big muscles"
   end
 
@@ -60,25 +66,18 @@ RSpec.describe "Schedules", type: :request do
 
     context "with valid parameters" do 
 
-      let (:new_attributes) do 
-        {
-          "name" => "small muscles",
-          "days_per_week" => 6,
-          "user_id" => 1
-        }
-      end
-
       it "updates a schedule" do
-        schedule = Schedule.new(valid_schedule)
+        schedule = Schedule.first_or_create(valid_schedule)
         schedule.save
-        patch schedule_url(schedule), params: {schedule: new_attributes}
+        patch schedule_url(schedule), params: {schedule: updated_schedule}
         schedule.reload 
         expect(response).to have_http_status(200)
         expect(schedule.name).to eq "small muscles"
       end
     end
 
-    context "with invalid parameters" do 
+    context "with invalid parameters" do
+
       it "expecting a 422 error" do
         schedule = Schedule.new(valid_schedule)
         schedule.save
