@@ -15,6 +15,7 @@ import EditExerciseRoutine from "./pages/EditExerciseRoutine"
 import AboutUs from "./pages/AboutUs"
 import NotFound from "./pages/NotFound"
 import ApiExercise from "./pages/ApiExercise"
+import CaloriesBurned from "./pages/CaloriesBurned"
 
 const App = (props) => {
   const [schedules, setSchedules] = useState()
@@ -236,7 +237,7 @@ const App = (props) => {
 
         <Route exact path="/newsapi" element={<NewsApi {...props} />} />
         <Route exact path="/exerciseapi" element={<ApiExercise {...props} />} />
-
+        <Route exact path="/calories" element={<CaloriesBurned {...props} />} />
         <Route exact path="/aboutus" element={<AboutUs {...props} />} />
       </Routes>
     </BrowserRouter>
