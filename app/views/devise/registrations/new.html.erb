@@ -34,12 +34,12 @@
 
 <div class="field">
 <%= f.label :height, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
-<%= f.number_field :height, class: "rounded-full",autofocus: true, autocomplete: "height" %>
+<%= f.number_field :height, class: "rounded-full",autofocus: true, autocomplete: "height", placeholder: "Height in inches" %>
 </div>
 
 <div class="field">
 <%= f.label :weight, class: "block text-sm font-md leading-5 text-[#4F4F4F]" %>
-<%= f.number_field :weight, class: "rounded-full", autofocus: true, autocomplete: "weight" %>
+<%= f.number_field :weight, class: "rounded-full", autofocus: true, autocomplete: "weight", placeholder: "Weight in lb" %>
 </div>
 
 <div class="field">
@@ -48,9 +48,12 @@
 </div>
 
   <div class="actions flex justify-center">
-    <%= f.submit "Sign up", class: "bg-[#4F4F4F] w-[150px] text-xl text-center  p-5 m-5 text-white rounded-full bg-opacity-60" %>
+    <%= f.submit "Sign up", class: "bg-gray-600 w-[150px] text-xl text-center  p-5 m-5 text-white rounded-full bg-opacity-60" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+<a href="/">
+<button class="bg-gray-600 w-[150px] text-xl text-center  p-5 m-5 text-white rounded-full bg-opacity-60">Back</button>
+</a>
 </div>
