@@ -79,10 +79,14 @@ const ApiExercise = () => {
   }, [page])
 
   return (
-    <div className="bg-gradient-to-br from-[#7DAFC7] min-h-screen to-white">
+    <div className="bg-gradient-to-br text-white from-[#7DAFC7] min-h-screen to-white">
       <h1 className="text-center text-3xl font-mono font-bold pt-10">
         Exercise Wiki
       </h1>
+      <p className="mx-6 text-center">
+        Browse thousands of exercises by body part difficulty level or exercise
+        type.
+      </p>
       <div className="flex flex-col items-center mt-5">
         <form className="flex flex-col gap-3">
           <label htmlFor="muscle-group">
@@ -90,7 +94,7 @@ const ApiExercise = () => {
           </label>
           <select
             type="text"
-            className="rounded-full leading-5"
+            className="rounded-full leading-5 text-black"
             name="muscle-group"
             onChange={(e) => setMuscle(e.target.value)}
           >
@@ -103,7 +107,7 @@ const ApiExercise = () => {
           </select>
           <label htmlFor="difficulty">Difficulty Level (optional)</label>
           <select
-            className="rounded-full leading-5"
+            className="rounded-full leading-5 text-black"
             type="text"
             name="difficulty"
             onChange={(e) => setDiff(e.target.value)}
@@ -117,7 +121,7 @@ const ApiExercise = () => {
           </select>
           <label htmlFor="type">Exercise Type (optional)</label>
           <select
-            className="rounded-full leading-5"
+            className="rounded-full leading-5 text-black"
             type="text"
             name="type"
             onChange={(e) => setExerciseType(e.target.value)}

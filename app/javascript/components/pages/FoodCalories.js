@@ -29,22 +29,25 @@ const FoodCalories = ({ current_user }) => {
   return (
     <div className="bg-gradient-to-br from-[#7DAFC7] min-h-screen to-white p-10 text-white">
       <h1 className="text-center text-3xl font-mono font-bold pt-10">
-        Calories Burned
+        Calorie Calculator
       </h1>
+      <p className="text-center font-mono">
+        Input all of the foods eaten to get a read out of calories and
+        macro-nutrients.
+      </p>
       <div className="flex flex-col items-center mt-5  gap-3">
         <form className="flex flex-col gap-3">
           <div className="flex flex-col">
-            <label htmlFor="search">Input Food</label>
+            <label htmlFor="search">Input all ingredients</label>
             <textarea
               rows="4"
-              cols="50"
+              cols="30"
               name="search"
               onChange={(e) => {
                 setSearch(e.target.value)
               }}
               type="text"
               className="rounded-lg leading-5 text-black"
-              placeholder="three eggs two slices of bacon one glass of milk"
             />
           </div>
           <button
@@ -68,13 +71,13 @@ const FoodCalories = ({ current_user }) => {
                   {": "}
                   <span>{item.calories} kcal</span>
                 </p>
-                <p>fat(g): {item.fat_total_g} kcal</p>
+                <p>fat(g): {item.fat_total_g}</p>
                 <p>carbohydrates(g): {item.carbohydrates_total_g}</p>
                 <p>protein(g): {item.protein_g}</p>
               </div>
             ))}
             <div className="mt-6">
-              <p className="font-bold text 2xl">
+              <p className="font-bold text-2xl underline">
                 Total Calories:{" "}
                 {data?.reduce((acc, item) => acc + item.calories, 0).toFixed(1)}
               </p>

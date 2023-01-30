@@ -20,15 +20,15 @@ import FoodCalories from "./pages/FoodCalories"
 
 const App = (props) => {
   const [schedules, setSchedules] = useState()
-
   const [exercises, setExercises] = useState()
-
   const [exerciseRoutines, setExerciseRoutines] = useState()
+  const [chuckNorris, setChuckNorris] = useState()
 
   useEffect(() => {
     readSchedule()
     readExercise()
     readExerciseRoutines()
+    fetchChuckNorris()
   }, [])
 
   const readSchedule = () => {
@@ -38,6 +38,25 @@ const App = (props) => {
         setSchedules(payload)
       })
       .catch((error) => console.log(error))
+  }
+  const apiKey = process.env.REACT_APP_NINJA_API
+  async function fetchChuckNorris() {
+    try {
+      const response = await fetch(
+        `https://api.api-ninjas.com/v1/chucknorris?`,
+        {
+          headers: {
+            "X-Api-Key": apiKey,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      const data = await response.json()
+      console.log(data)
+      setChuckNorris(data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const readExercise = () => {
@@ -144,7 +163,11 @@ const App = (props) => {
       <Header {...props} />
 
       <Routes>
-        <Route exact path="/" element={<Home {...props} />} />
+        <Route
+          exact
+          path="/"
+          element={<Home {...props} chuckNorris={chuckNorris} />}
+        />
 
         <Route
           exact

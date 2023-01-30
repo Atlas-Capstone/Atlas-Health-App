@@ -39,29 +39,30 @@ const CaloriesBurned = ({ current_user }) => {
   }
   return (
     <div className="bg-gradient-to-br from-[#7DAFC7] min-h-screen to-white p-10 text-white">
-      <h1 className="text-center text-3xl font-mono font-bold pt-10">
-        Calories Burned
-      </h1>
+      <div className="flex flex-col items-center">
+        <h1 className="text-center text-3xl font-mono font-bold pt-10">
+          Calories Burned
+        </h1>
+        <p className="mt-3 mx-12">
+          Input an activity, your weight, and the duration of the activity to
+          get a rough calorie burned estimate. The search can be quite pedantic
+          so if your activity doesn't surface at first try different words
+          related tot he activity.
+        </p>
+      </div>
       <div className="flex flex-col items-center mt-5  gap-3">
         <form className="flex flex-col gap-3">
           <div className="flex flex-col">
             <label htmlFor="activity">Input Activity</label>
-
-            <select
+            <input
+              type="text"
+              className="text-black rounded-full"
               name="activity"
               id="activity"
               onChange={(e) => {
                 setActivity(e.target.value)
               }}
-              className="text-black rounded-full"
-            >
-              <option value="">Select Please</option>
-              {activityArray.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+            />
           </div>
           <div className="flex flex-col">
             <label htmlFor="weight">Current Weight in lb</label>
@@ -96,20 +97,27 @@ const CaloriesBurned = ({ current_user }) => {
         </form>
         {data && (
           <div>
-            <h3 className="font-mono underline font-bold text-xl ">
+            <h3 className="font-mono text-center underline font-bold text-xl ">
               Activities
             </h3>
-            {data?.map((item, index) => (
-              <div
-                key={index}
-                className="rounded-full bg-gray-400 bg-opacity-60 text-white p-8 flex flex-col items-center justify-center mt-2"
-              >
-                <p className="font-bold text-lg">{item.name}</p>
-                <p>Calories Per Hour: {item.calories_per_hour}</p>
-                <p>Duration: {item.duration_minutes}</p>
-                <p>Total Calories: {item.total_calories}</p>
-              </div>
-            ))}
+            {data?.length < 1 && (
+              <p className="text-2xl font-mono font-bold mt-3 mx-10">
+                Sorry no result for this activity please try again with
+                different wording, the a.i. is quite pedantic.
+              </p>
+            )}
+            {data?.length > 0 &&
+              data?.map((item, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl bg-gray-400 bg-opacity-60 text-white p-8 flex flex-col items-center justify-center mt-2"
+                >
+                  <p className="font-bold text-lg">{item.name}</p>
+                  <p>Calories Per Hour: {item.calories_per_hour} kcal</p>
+                  <p>Duration: {item.duration_minutes} minutes</p>
+                  <p>Total Calories: {item.total_calories} kcal</p>
+                </div>
+              ))}
           </div>
         )}
       </div>

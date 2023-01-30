@@ -29,7 +29,7 @@ const ExerciseRoutineCard = ({
                   <img
                     src={exer.image}
                     alt={exer.name}
-                    className="w-40 h-40 h-object-fill rounded-2xl"
+                    className="w-40 h-40 object-fill rounded-2xl"
                   />
                 </NavLink>
               </div>
