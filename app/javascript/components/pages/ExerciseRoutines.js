@@ -7,11 +7,10 @@ const ExerciseRoutines = ({
   exercises,
   exerciseRoutines,
   logged_in,
-  deleteExerciseRoutine
+  deleteExerciseRoutine,
 }) => {
-
   const { id } = useParams()
-  
+
   const currentRoutines = exerciseRoutines?.filter(
     (item) => item.schedule_id === +id
   )
@@ -39,8 +38,8 @@ const ExerciseRoutines = ({
 
   return (
     <div className="min-h-screen flex items-center flex-col gap-6 pb-24 bg-gradient-to-br from-[#7DAFC7] to-[#92692C] text-white">
-      <h1 className="text-4xl font-mono font-bold  mt-5">Exercise Routines!</h1>
-
+      <h1 className="text-4xl font-mono font-bold  mt-5">Exercise Routines</h1>
+      <p>Add an exercise routine to your schedule.</p>
       <div className="flex flex-col lg:flex lg:flex-row lg:flex-wrap min-w-screen gap-6">
         {mondayRoutine?.length > 0 && (
           <div className="bg-[#d9d9d9] bg-opacity-30 px-10 py-6 rounded-2xl">

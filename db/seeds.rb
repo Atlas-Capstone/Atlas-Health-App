@@ -33,7 +33,7 @@ strength_routine = Schedule.find_or_create_by(name: "Three Day Strength", days_p
 
 
 # find_or_create_by exercise_routines
-er1 = ExerciseRoutine.find_or_create_by(exercise_id: squat.id, schedule_id: routine1.id, sets: 3, reps: 12, weight: 100, day: "Monday")
+er1 = ExerciseRoutine.find_or_create_by(exercise_id: squat.id, schedule_id: routine1, sets: 3, reps: 12, weight: 100, day: "Monday")
 
 er2 = ExerciseRoutine.find_or_create_by(exercise_id: push_ups.id, schedule_id: routine1.id, sets: 3, reps: 10, weight: 150,day: "Monday")
 

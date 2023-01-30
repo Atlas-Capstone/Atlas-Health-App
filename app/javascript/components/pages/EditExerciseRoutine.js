@@ -1,11 +1,17 @@
 import React, { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
-const EditExerciseRoutine = ({ exercises, updateExerciseRoutine, exerciseRoutines }) => {
-
+const EditExerciseRoutine = ({
+  exercises,
+  updateExerciseRoutine,
+  exerciseRoutines,
+}) => {
   const { id } = useParams()
 
-  const currentExerciseRoutine = exerciseRoutines?.find(item => item.id === +id)
+  const currentExerciseRoutine = exerciseRoutines?.find(
+    (item) => item.id === +id
+  )
 
   const navigate = useNavigate()
 
@@ -15,7 +21,7 @@ const EditExerciseRoutine = ({ exercises, updateExerciseRoutine, exerciseRoutine
     sets: currentExerciseRoutine?.sets,
     reps: currentExerciseRoutine?.reps,
     day: currentExerciseRoutine?.day,
-    weight:currentExerciseRoutine?.weight,
+    weight: currentExerciseRoutine?.weight,
   })
 
   const handleChange = (e) => {
@@ -141,14 +147,20 @@ const EditExerciseRoutine = ({ exercises, updateExerciseRoutine, exerciseRoutine
               <option value="Sunday">Sunday</option>
             </select>
           </div>
-          <div>
+          <div className="flex  justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-gray-400 rounded-full text-white px-3 py-2 hover:bg-gray-500"
               type="button"
               onClick={handleSubmit}
             >
               Update
             </button>
+            <NavLink
+              to={`/exerciseroutines/${currentExerciseRoutine?.schedule_id}`}
+              className="bg-gray-400 rounded-full text-white px-3 py-2 hover:bg-gray-500"
+            >
+              Cancel
+            </NavLink>
           </div>
         </form>
       </div>

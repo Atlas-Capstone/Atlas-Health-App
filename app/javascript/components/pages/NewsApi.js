@@ -12,7 +12,7 @@ const NewsApi = () => {
         `https://newsapi.org/v2/everything?q=fitness&apiKey=${apiKey}`
       )
       const data = await response.json()
-      console.log(data)
+
       setNews(data)
     } catch (error) {
       console.error(error)

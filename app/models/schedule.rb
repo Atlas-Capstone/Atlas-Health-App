@@ -3,7 +3,7 @@ class Schedule < ApplicationRecord
 
   belongs_to :user
   
-  has_many :exercise_routines
+  has_many :exercise_routines, dependent: :destroy
 
   # Begin validations
   validates :days_per_week, numericality: { greater_than_or_equal_to: 0 }
