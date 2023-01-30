@@ -4,7 +4,7 @@ import { useParams, NavLink } from "react-router-dom"
 const ExerciseShow = ({ exercises }) => {
   const { id } = useParams()
   const currentExercise = exercises?.find((exercise) => exercise.id === +id)
-  console.log(currentExercise)
+
   return (
     <>
       {currentExercise && (

@@ -28,7 +28,7 @@ const CaloriesBurned = ({ current_user }) => {
         }
       )
       const data = await response.json()
-      console.log(data)
+
       setData(data)
     } catch (error) {
       console.error(error)

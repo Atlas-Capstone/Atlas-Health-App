@@ -52,7 +52,7 @@ const App = (props) => {
         }
       )
       const data = await response.json()
-      console.log(data)
+
       setChuckNorris(data)
     } catch (error) {
       console.error(error)
@@ -91,7 +91,6 @@ const App = (props) => {
   }
 
   const updateSchedule = (schedule, id) => {
-    console.log(schedule, id)
     fetch(`/schedules/${id}`, {
       method: "PATCH",
       headers: {
